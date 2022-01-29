@@ -7,6 +7,8 @@ var currentTexture = 0
 
 func _ready():
 	$CharacterControl/CharacterSprite.set_texture(PossibleTextures[currentTexture])
+	
+func begin():
 	$CharacterControl/CharacterSprite/AnimationPlayer.play("run")
 
 func _start_bg(var _val):

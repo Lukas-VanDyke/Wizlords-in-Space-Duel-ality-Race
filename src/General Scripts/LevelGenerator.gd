@@ -10,7 +10,7 @@ var current_slice = 0
 export var y_pos = 500
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func begin():
 	randomize()
 	trap_dict = WizLord.get_traps()
 	var total_frequency = 0
@@ -18,10 +18,11 @@ func _ready():
 	for key in trap_dict:
 		if key == "Traps": continue
 		total_frequency += trap_dict[key]
+	if total_frequency == 0:
+		total_frequency = 1
 	for key in trap_dict:
 		if key == "Traps": continue
 		trap_dict[key] = 100 * (trap_dict[key] / total_frequency)
-	init_level()
 
 func init_level():
 	for i in range(5):
