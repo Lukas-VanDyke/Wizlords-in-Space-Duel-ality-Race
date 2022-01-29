@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Wizlaugh.ogg-ba4b08bcbaa671d978209f6aa67dd382.oggstr"
+
+[deps]
+
+source_file="res://Audio/Wizlaugh.ogg"
+dest_files=[ "res://.import/Wizlaugh.ogg-ba4b08bcbaa671d978209f6aa67dd382.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
