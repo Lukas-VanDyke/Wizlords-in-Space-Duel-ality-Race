@@ -6,7 +6,7 @@ var currentTexture = 0
 enum PositionState { Floor, Air }
 var currentPositionState
 
-var currentSpeed
+var currentSpeed = 0
 export (int) var startSpeed = 400
 export (int) var speedIncrease = 35
 export (int) var gravity = 2500
@@ -14,6 +14,7 @@ export (int) var jumpHeight = 1000
 
 var velocity = Vector2()
 var jumpNext = false
+var begun = false
 
 signal hit_trap(trap)
 
@@ -21,9 +22,12 @@ func _ready():
 	connect("hit_trap", self, "_hit_trap")
 	$PlayerSprite.set_texture(PossibleTextures[currentTexture])
 	$PlayerSprite/AnimationPlayer.play("run")
-	
+
+func begin():
 	currentSpeed = startSpeed
 	velocity.x = currentSpeed
+	$Camera2D.current = true
+	begun = true
 
 #Change the sprite sheet used in the player's animations
 func change_sprite(newSprite):
@@ -50,6 +54,8 @@ func double_jump():
 	velocity.y = -jumpHeight
 
 func _physics_process(delta):
+	if not begun: return
+	
 	if currentPositionState == PositionState.Air:
 		velocity.y += gravity * delta
 	

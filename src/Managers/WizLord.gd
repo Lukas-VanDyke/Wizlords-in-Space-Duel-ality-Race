@@ -17,7 +17,6 @@ func wizload(path):
 
 	# The solution is to defer the load to a later time, when
 	# we can be sure that no code from the current scene is running:
-
 	call_deferred("_deferred_goto_scene", path)
 
 func get_traps():
@@ -26,6 +25,9 @@ func set_traps(traps: Dictionary):
 	current_traps = traps
 
 func _deferred_goto_scene(path):
+	# Make sure that the frame is finished drawing before we start the transation
+#	yield(VisualServer, "frame_post_draw")
+	var screenshot = get_viewport().get_texture().get_data()
 	# It is now safe to remove the current scene
 	current_scene.free()
 
@@ -40,3 +42,26 @@ func _deferred_goto_scene(path):
 
 	# Optionally, to make it compatible with the SceneTree.change_scene() API.
 	get_tree().set_current_scene(current_scene)
+	
+	transition(screenshot)
+
+func transition(screenshot):
+	var tween = Tween.new()
+	current_scene.add_child(tween)
+	var canvas_layer = CanvasLayer.new()
+	current_scene.add_child(canvas_layer)
+	var old_scene = TextureRect.new()
+	canvas_layer.add_child(old_scene)
+	
+	## For some reason the screenshot is flipped when added to the scene
+	# this line pre-flips it so that it's upright
+	screenshot.flip_y()
+
+	var tex = ImageTexture.new()
+	tex.create_from_image(screenshot)
+	old_scene.texture = tex
+	
+	tween.interpolate_property(old_scene, "rect_position:x", old_scene.rect_position.x, -1200, 1, Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	tween.start()
+	# Might want to delay the actual start until this is done
+	tween.connect("tween_all_completed", current_scene, "begin")
