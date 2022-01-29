@@ -92,6 +92,7 @@ PossibleTextures = [ ExtResource( 2 ), ExtResource( 9 ), ExtResource( 5 ), ExtRe
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+smoothing_enabled = true
 
 [node name="PlayerSprite" type="Sprite" parent="."]
 scale = Vector2( 0.25, 0.25 )

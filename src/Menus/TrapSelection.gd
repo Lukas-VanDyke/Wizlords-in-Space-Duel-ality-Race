@@ -1,5 +1,7 @@
 extends Control
 
+func begin():
+	pass
 
 func _create_level_dict():
 	var level_dict = {}
