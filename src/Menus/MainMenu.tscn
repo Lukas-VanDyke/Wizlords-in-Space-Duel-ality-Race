@@ -1,6 +1,92 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Menus/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://Art/Background.png" type="Texture" id=2]
+[ext_resource path="res://Art/Title.png" type="Texture" id=3]
+[ext_resource path="res://Art/Title-bland.png" type="Texture" id=4]
+[ext_resource path="res://Art/Theme.tres" type="Theme" id=5]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform float offset = 0.0;
+uniform bool play = false;
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV - vec2(fract(TIME * 0.1), 0.0));
+	if (play) {
+		COLOR = texture(TEXTURE, UV + vec2(fract(TIME * 0.1), 0.0));
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/offset = 0.0
+shader_param/play = false
+
+[sub_resource type="Animation" id=1]
+resource_name = "Intro"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("TitleBland:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 2.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1800.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TitleBland:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9, 2.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0.01, 0.01 ), Vector2( 0.01, 0.01 ), Vector2( 0.313022, 0.567976 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TitleBland/TitleBland/Title:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = false
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.7, 3.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:start_bg")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 3.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("LineEdit:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 3.3, 3.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -9,3 +95,48 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Background" type="Sprite" parent="."]
+material = SubResource( 4 )
+position = Vector2( 1192, 328 )
+rotation = 1.5708
+texture = ExtResource( 2 )
+
+[node name="TitleBland" type="Node2D" parent="."]
+position = Vector2( 468, 201 )
+rotation = -0.502655
+scale = Vector2( 0.002, 0.002 )
+
+[node name="TitleBland" type="Sprite" parent="TitleBland"]
+position = Vector2( 0, 89.7926 )
+rotation = 3.49691e-07
+texture = ExtResource( 4 )
+
+[node name="Title" type="Sprite" parent="TitleBland/TitleBland"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -9.58411, -15.8457 )
+rotation = -5.42412e-07
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Intro"
+anims/Intro = SubResource( 1 )
+next/Intro = "background"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+anchor_left = 0.345
+anchor_top = 0.714
+anchor_right = 0.681
+anchor_bottom = 0.914
+margin_left = -5.28003
+margin_top = -0.400024
+margin_right = -1.34406
+margin_bottom = 0.599976
+theme = ExtResource( 5 )
+placeholder_text = "Type \"start\" to start"
+placeholder_alpha = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]
