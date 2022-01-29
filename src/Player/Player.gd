@@ -48,7 +48,7 @@ func _physics_process(delta):
 	play_state_animation()
 		
 func get_input():
-	if Input.is_action_just_pressed("Jump") and can_jump():
+	if Input.is_action_just_pressed("jump") and can_jump():
 		velocity.y = -jumpHeight
 
 #Move the player
