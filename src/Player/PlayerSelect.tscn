@@ -16,7 +16,7 @@
 [ext_resource path="res://Art/Characters/10 Tech.png" type="Texture" id=14]
 [ext_resource path="res://Art/Characters/11 Mage-ic Man.png" type="Texture" id=15]
 [ext_resource path="res://Art/Characters/08 Burlap.png" type="Texture" id=16]
-[ext_resource path="res://Art/Nextbutton.png" type="Texture" id=17]
+[ext_resource path="res://Art/Purple_Button.png" type="Texture" id=17]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -129,6 +129,7 @@ margin_left = 49.0
 margin_top = 8.0
 margin_right = 104.0
 margin_bottom = 22.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Previous"
 
 [node name="Next" type="TextureButton" parent="."]
@@ -152,6 +153,7 @@ margin_left = 61.0
 margin_top = 8.0
 margin_right = 91.0
 margin_bottom = 22.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Next"
 
 [node name="Continue" type="TextureButton" parent="."]
@@ -176,6 +178,7 @@ margin_left = 48.0
 margin_top = 8.0
 margin_right = 105.0
 margin_bottom = 22.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Continue"
 
 [node name="CharacterControl" type="Control" parent="."]

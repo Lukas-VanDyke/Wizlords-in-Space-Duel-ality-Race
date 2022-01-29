@@ -8,11 +8,12 @@ var currentPositionState
 
 var currentSpeed
 export (int) var startSpeed = 400
-export (int) var speedIncrease = 50
+export (int) var speedIncrease = 35
 export (int) var gravity = 2500
 export (int) var jumpHeight = 1000
 
 var velocity = Vector2()
+var jumpNext = false
 
 signal hit_trap(trap)
 
@@ -41,6 +42,9 @@ func increase_speed():
 	velocity.x = currentSpeed
 	
 	$IncreaseSpeedTimer.start()
+	
+func jump():
+	jumpNext = true
 
 func _physics_process(delta):
 	if currentPositionState == PositionState.Air:
@@ -49,9 +53,10 @@ func _physics_process(delta):
 	get_input()
 	move(delta)
 	play_state_animation()
+	jumpNext = false
 		
 func get_input():
-	if Input.is_action_just_pressed("jump") and can_jump():
+	if (Input.is_action_just_pressed("jump") or jumpNext) and can_jump():
 		velocity.y = -jumpHeight
 
 #Move the player
