@@ -7,6 +7,6 @@ func _start_bg(var _val):
 		$Background.material.set_shader_param("play", true)
 
 func _on_LineEdit_text_changed(new_text):
-	if new_text == "start" or new_text == "Start":
+	if new_text.to_lower() == "start":
 		get_tree().quit()
 		#Change to next scene
