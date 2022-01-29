@@ -55,3 +55,71 @@ texture = ExtResource( 2 )
 autoplay = "Intro"
 anims/Intro = SubResource( 1 )
 next/Intro = "background"
+
+[node name="Previous" type="TextureButton" parent="."]
+anchor_left = 0.2
+anchor_top = 0.47
+anchor_right = 0.35
+anchor_bottom = 0.52
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Previous"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Previous/CenterContainer"]
+margin_left = 49.0
+margin_top = 8.0
+margin_right = 104.0
+margin_bottom = 22.0
+text = "Previous"
+
+[node name="Next" type="TextureButton" parent="."]
+anchor_left = 0.65
+anchor_top = 0.47
+anchor_right = 0.8
+anchor_bottom = 0.52
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Next"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="Next/CenterContainer"]
+margin_left = 61.0
+margin_top = 8.0
+margin_right = 91.0
+margin_bottom = 22.0
+text = "Next"
+
+[node name="Continue" type="TextureButton" parent="."]
+anchor_left = 0.8
+anchor_top = 0.8
+anchor_right = 0.95
+anchor_bottom = 0.85
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Continue"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="Continue/CenterContainer"]
+margin_left = 48.0
+margin_top = 8.0
+margin_right = 105.0
+margin_bottom = 22.0
+text = "Continue"
+
+[connection signal="pressed" from="Previous" to="." method="_prev_character_pressed"]
+[connection signal="pressed" from="Next" to="." method="_next_character_pressed"]
+[connection signal="pressed" from="Continue" to="." method="_continue_pressed"]
