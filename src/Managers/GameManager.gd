@@ -1,16 +1,9 @@
-extends Control
+extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$LevelGenerator.init_level() # add 5 tiles to game
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	var player_pos = $Player.position.x / 80
+	if $LevelGenerator.current_slice < player_pos + 4:
+		$LevelGenerator.add_tile()

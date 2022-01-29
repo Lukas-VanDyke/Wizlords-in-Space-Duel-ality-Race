@@ -14,7 +14,10 @@ export (int) var jumpHeight = 1000
 
 var velocity = Vector2()
 
+signal hit_trap(trap)
+
 func _ready():
+	connect("hit_trap", self, "_hit_trap")
 	$PlayerSprite.set_texture(PossibleTextures[currentTexture])
 	$PlayerSprite/AnimationPlayer.play("run")
 	
@@ -80,3 +83,6 @@ func play_state_animation():
 		$PlayerSprite/AnimationPlayer.play("fall")
 	else:
 		$PlayerSprite/AnimationPlayer.play("run")
+
+func _hit_trap(var trap):
+	print(trap)
