@@ -1,11 +1,116 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Art/Characters/01 Red.png" type="Texture" id=2]
+[ext_resource path="res://Art/Characters/04 Purple.png" type="Texture" id=3]
+[ext_resource path="res://Art/Characters/14 Gnome.png" type="Texture" id=4]
+[ext_resource path="res://Art/Characters/03 Green.png" type="Texture" id=5]
+[ext_resource path="res://Art/Characters/07 Black.png" type="Texture" id=6]
+[ext_resource path="res://Art/Characters/12 Santa.png" type="Texture" id=7]
+[ext_resource path="res://Art/Characters/05 Orange.png" type="Texture" id=8]
+[ext_resource path="res://Art/Characters/02 Blue.png" type="Texture" id=9]
+[ext_resource path="res://Art/Characters/09 Retro.png" type="Texture" id=10]
+[ext_resource path="res://Art/Characters/13 Ghost.png" type="Texture" id=11]
+[ext_resource path="res://Art/Characters/10 Tech.png" type="Texture" id=12]
+[ext_resource path="res://Art/Characters/11 Mage-ic Man.png" type="Texture" id=13]
+[ext_resource path="res://Art/Characters/08 Burlap.png" type="Texture" id=14]
+[ext_resource path="res://Art/Characters/06 White.png" type="Texture" id=15]
 
-[node name="Player" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
 }
+
+[sub_resource type="Animation" id=5]
+resource_name = "fall"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 13 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "jump"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "run"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12, 23 )
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 1 )
+PossibleTextures = [ ExtResource( 2 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 15 ), ExtResource( 6 ), ExtResource( 14 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 4 ) ]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="PlayerSprite" type="Sprite" parent="."]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 2 )
+hframes = 4
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSprite"]
+anims/RESET = SubResource( 3 )
+anims/fall = SubResource( 5 )
+anims/jump = SubResource( 4 )
+anims/run = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, 2 )
+shape = SubResource( 1 )
+
+[node name="IncreaseSpeedTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="IncreaseSpeedTimer" to="." method="increase_speed"]
