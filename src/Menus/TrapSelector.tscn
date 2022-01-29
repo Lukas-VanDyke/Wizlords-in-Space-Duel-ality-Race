@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Art/Blocks.png" type="Texture" id=1]
+[ext_resource path="res://Menus/TrapSelector.gd" type="Script" id=2]
+[ext_resource path="res://Art/Theme.tres" type="Theme" id=3]
+[ext_resource path="res://Art/Traps/Ice.tres" type="Texture" id=4]
+[ext_resource path="res://Art/Traps/Spike.tres" type="Texture" id=5]
+[ext_resource path="res://Art/Traps/Lava.tres" type="Texture" id=6]
+[ext_resource path="res://Art/Traps.png" type="Texture" id=7]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 80, 80, 80 )
+
+[node name="TrapSelector" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+item = "Lava"
+itemMap = {
+"Ice": ExtResource( 4 ),
+"Lava": ExtResource( 6 ),
+"Spike": ExtResource( 5 ),
+"Traps": ExtResource( 7 )
+}
+
+[node name="Item" type="TextureRect" parent="."]
+margin_right = 80.0
+margin_bottom = 80.0
+texture = SubResource( 1 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Item"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slider" type="HSlider" parent="Item/Label"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[connection signal="value_changed" from="Item/Label/Slider" to="." method="_on_Slider_value_changed"]
