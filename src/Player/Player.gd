@@ -45,6 +45,9 @@ func increase_speed():
 	
 func jump():
 	jumpNext = true
+	
+func double_jump():
+	velocity.y = -jumpHeight
 
 func _physics_process(delta):
 	if currentPositionState == PositionState.Air:
@@ -62,6 +65,8 @@ func get_input():
 #Move the player
 func move(delta):
 	var collision_info = move_and_collide(velocity * delta)
+	velocity.x = currentSpeed
+	
 	if collision_info:
 		set_position_state(collision_info)
 		velocity = velocity.slide(collision_info.normal)
@@ -76,6 +81,9 @@ func set_position_state(collision):
 			currentPositionState = PositionState.Floor
 		else:
 			currentPositionState = PositionState.Air
+		
+		if normal == Vector2.RIGHT:
+			velocity.x = 0
 			
 func can_jump():
 	return currentPositionState == PositionState.Floor
