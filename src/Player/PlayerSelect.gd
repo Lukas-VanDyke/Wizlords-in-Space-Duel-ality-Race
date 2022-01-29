@@ -28,4 +28,4 @@ func _prev_character_pressed():
 	$CharacterControl/CharacterSprite.set_texture(PossibleTextures[currentTexture])
 	
 func _continue_pressed():
-	get_tree().change_scene("res://Menus/TrapSelection.tscn")
+	WizLord.wizload("res://Menus/TrapSelection.tscn")

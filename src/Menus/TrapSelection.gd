@@ -9,5 +9,5 @@ func _create_level_dict():
 
 func _on_LineEdit_text_changed(new_text):
 	if new_text.to_lower() == "start":
-		print(_create_level_dict())
-		get_tree().change_scene("res://Managers/GameManager.tscn")
+		WizLord.set_traps(_create_level_dict())
+		WizLord.wizload("res://Managers/GameManager.tscn")

@@ -8,5 +8,5 @@ func _start_bg(var _val):
 
 func _on_LineEdit_text_changed(new_text):
 	if new_text.to_lower() == "start":
-		get_tree().change_scene("res://Player/PlayerSelect.tscn")
+		WizLord.wizload("res://Player/PlayerSelect.tscn")
 

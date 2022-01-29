@@ -14,6 +14,10 @@ config/name="Wizlords in Space: Duel-ality Race"
 run/main_scene="res://Menus/MainMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+WizLord="*res://Managers/WizLord.gd"
+
 [input]
 
 jump={
