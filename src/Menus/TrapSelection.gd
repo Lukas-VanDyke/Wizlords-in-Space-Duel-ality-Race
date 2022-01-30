@@ -1,7 +1,15 @@
 extends Control
 
-func begin():
+func _ready():
+	# TODO: This is just for testing
+#	begin()
 	pass
+
+func begin():
+	if WizLord.show_selection_tutorial:
+		$Tutorial.visible = true
+	WizLord.show_selection_tutorial = false
+
 
 func _create_level_dict():
 	var level_dict = {}

@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Art/Background.png" type="Texture" id=1]
 [ext_resource path="res://Menus/TrapSelector.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Menus/TypeStart.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Art/Theme.tres" type="Theme" id=4]
+[ext_resource path="res://Menus/SelectionTutorial.gd" type="Script" id=5]
+[ext_resource path="res://Art/fade.png" type="Texture" id=6]
 [ext_resource path="res://Menus/TrapSelection.gd" type="Script" id=8]
 
 [sub_resource type="Shader" id=5]
@@ -97,7 +100,7 @@ anchor_bottom = 0.0
 margin_left = -300.0
 margin_top = 10.0
 item = "Traps"
-freq = 30
+freq = 18
 
 [node name="TypeStart" parent="." instance=ExtResource( 3 )]
 modulate = Color( 1, 1, 1, 1 )
@@ -106,4 +109,65 @@ anchor_top = 0.4
 anchor_right = 1.0
 anchor_bottom = 0.6
 
+[node name="Tutorial" type="TextureButton" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 6 )
+texture_disabled = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
+expand = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slide01" type="Label" parent="Tutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+text = "Welcome to the Selection Screen!
+Here you will choose the breakdown of traps, and their frequency."
+align = 1
+valign = 1
+
+[node name="Slide02" type="Label" parent="Tutorial"]
+visible = false
+anchor_right = 0.3
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+text = "This is the trap breakdown section.
+
+Here you choose what proportion
+of each trap that you want
+in your level.
+
+Remember, choosing a variety of
+traps will be harder, but
+give a greater reward."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slide03" type="Label" parent="Tutorial"]
+visible = false
+anchor_left = 0.6
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+text = "This is the trap frequency selector.
+
+It has a scale of 1 (boring)
+to 100 (no fun).
+
+Good Luck!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="legoo" from="TypeStart" to="." method="_on_TypeStart_legoo"]
+[connection signal="pressed" from="Tutorial" to="Tutorial" method="_on_Tutorial_pressed"]
