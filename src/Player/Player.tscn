@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/Characters/01 Red.png" type="Texture" id=2]
@@ -15,6 +15,46 @@
 [ext_resource path="res://Art/Characters/11 Mage-ic Man.png" type="Texture" id=13]
 [ext_resource path="res://Art/Characters/08 Burlap.png" type="Texture" id=14]
 [ext_resource path="res://Art/Characters/06 White.png" type="Texture" id=15]
+[ext_resource path="res://Art/Items/Ward-Sheet-Opaque.png" type="Texture" id=16]
+[ext_resource path="res://Art/Items/Ward-Sheet-Transparent.png" type="Texture" id=17]
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 32, 57 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 16 )
+region = Rect2( 32, 0, 32, 57 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 16 )
+region = Rect2( 64, 0, 32, 57 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 16 )
+region = Rect2( 96, 0, 32, 57 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 16 )
+region = Rect2( 128, 0, 32, 57 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 16 )
+region = Rect2( 160, 0, 32, 57 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "ward",
+"speed": 9.0
+} ]
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -83,6 +123,44 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 32, 57 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 32, 0, 32, 57 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 64, 0, 32, 57 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 96, 0, 32, 57 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 128, 0, 32, 57 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 160, 0, 32, 57 )
+
+[sub_resource type="SpriteFrames" id=19]
+animations = [ {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": true,
+"name": "ward",
+"speed": 9.0
+} ]
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 23 )
 
@@ -94,6 +172,11 @@ PossibleTextures = [ ExtResource( 2 ), ExtResource( 9 ), ExtResource( 5 ), ExtRe
 position = Vector2( 244, 0 )
 current = true
 smoothing_enabled = true
+
+[node name="FullWard" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 12 )
+animation = "ward"
 
 [node name="PlayerSprite" type="Sprite" parent="."]
 scale = Vector2( 0.25, 0.25 )
@@ -107,6 +190,11 @@ anims/fall = SubResource( 5 )
 anims/jump = SubResource( 4 )
 anims/run = SubResource( 2 )
 
+[node name="TransparentWard" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 19 )
+animation = "ward"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 2 )
 shape = SubResource( 1 )
@@ -115,4 +203,11 @@ shape = SubResource( 1 )
 wait_time = 5.0
 autostart = true
 
+[node name="WardTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="IceTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="IncreaseSpeedTimer" to="." method="increase_speed"]
+[connection signal="timeout" from="WardTimer" to="." method="ward_end"]
+[connection signal="timeout" from="IceTimer" to="." method="ice_end"]

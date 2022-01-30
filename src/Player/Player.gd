@@ -16,6 +16,10 @@ var velocity = Vector2()
 var jumpNext = false
 var begun = false
 
+var iced = false
+var slowed = false
+var warded = false
+
 signal hit_trap(trap)
 
 func _ready():
@@ -25,6 +29,9 @@ func _ready():
 	
 	$PlayerSprite.set_texture(PossibleTextures[currentTexture])
 	$PlayerSprite/AnimationPlayer.play("run")
+	
+	$FullWard.play()
+	$TransparentWard.play()
 
 func begin():
 	currentSpeed = startSpeed
@@ -55,6 +62,25 @@ func jump():
 	
 func double_jump():
 	velocity.y = -jumpHeight
+	
+func start_ice():
+	iced = true
+	$IceTimer.start()
+	
+func ice_end():
+	iced = false
+	
+func start_ward():
+	warded = true
+	$FullWard.show()
+	$TransparentWard.show()
+	$WardTimer.start()
+	
+func ward_end():
+	warded = false
+	$FullWard.hide()
+	$TransparentWard.hide()
+	$WardTimer.stop()
 
 func _physics_process(delta):
 	if not begun: return
@@ -68,13 +94,15 @@ func _physics_process(delta):
 	jumpNext = false
 		
 func get_input():
-	if (Input.is_action_just_pressed("jump") or jumpNext) and can_jump():
+	if (Input.is_action_just_pressed("jump") or jumpNext) and can_jump() and not iced:
 		velocity.y = -jumpHeight
 
 #Move the player
 func move(delta):
 	var collision_info = move_and_collide(velocity * delta)
 	velocity.x = currentSpeed
+	if slowed:
+		velocity.x = currentSpeed / 2
 	
 	if collision_info:
 		set_position_state(collision_info)
@@ -107,4 +135,23 @@ func play_state_animation():
 		$PlayerSprite/AnimationPlayer.play("run")
 
 func _hit_trap(var trap):
-	print(trap)
+	if (trap == "ice_start"):
+		start_ice()
+	elif (trap == "wind_start"):
+		slowed = true
+	elif (trap == "wind_end"):
+		slowed = false
+	elif (trap == "lava" or trap == "spikes" or trap == "magic_missile" or trap == "monster" or trap == "explosion"):
+		check_end()
+		
+func check_end():
+	if warded:
+		ward_end()
+		return
+		
+	#Check for ghost stuff
+	
+	end_game()
+		
+func end_game():
+	print("dead")
