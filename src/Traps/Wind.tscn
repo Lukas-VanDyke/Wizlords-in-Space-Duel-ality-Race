@@ -5,72 +5,72 @@
 [ext_resource path="res://Art/LeafBlowing-Sheet.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=2]
-flags = 2
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 32, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
-flags = 2
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 32, 0, 32, 16 )
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 2
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 64, 0, 32, 16 )
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 2
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 96, 0, 32, 16 )
 
 [sub_resource type="AtlasTexture" id=6]
-flags = 2
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 128, 0, 32, 16 )
 
 [sub_resource type="AtlasTexture" id=7]
-flags = 2
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 160, 0, 32, 16 )
 
 [sub_resource type="AtlasTexture" id=8]
-flags = 2
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 192, 0, 32, 16 )
 
 [sub_resource type="AtlasTexture" id=9]
-flags = 2
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 224, 0, 32, 16 )
 
 [sub_resource type="AtlasTexture" id=10]
-flags = 2
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 256, 0, 32, 16 )
 
 [sub_resource type="AtlasTexture" id=11]
-flags = 2
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 288, 0, 32, 16 )
 
 [sub_resource type="AtlasTexture" id=12]
-flags = 2
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 320, 0, 32, 16 )
 
 [sub_resource type="AtlasTexture" id=13]
-flags = 2
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 352, 0, 32, 16 )
 
 [sub_resource type="AtlasTexture" id=14]
-flags = 2
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 384, 0, 32, 16 )
 
 [sub_resource type="AtlasTexture" id=15]
-flags = 2
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 416, 0, 32, 16 )
 
@@ -93,7 +93,7 @@ script = ExtResource( 2 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 92.5, -130 )
 frames = SubResource( 16 )
-frame = 8
+frame = 13
 playing = true
 
 [node name="Area2D" type="Area2D" parent="Sprite"]
@@ -104,91 +104,91 @@ shape = SubResource( 1 )
 
 [node name="Sprite2" type="AnimatedSprite" parent="Sprite"]
 frames = SubResource( 16 )
-frame = 8
+frame = 13
 playing = true
 
 [node name="Sprite3" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( 18.5, 15.5 )
 frames = SubResource( 16 )
-frame = 8
+frame = 13
 playing = true
 
 [node name="Sprite4" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( -7.5, 13.5 )
 frames = SubResource( 16 )
-frame = 7
+frame = 12
 playing = true
 
 [node name="Sprite5" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( 12.5, -8.5 )
 frames = SubResource( 16 )
-frame = 6
+frame = 11
 playing = true
 
 [node name="Sprite6" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( -9.5, -12.5 )
 frames = SubResource( 16 )
-frame = 5
+frame = 10
 playing = true
 
 [node name="Sprite7" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( -66, -7 )
 frames = SubResource( 16 )
-frame = 7
+frame = 12
 playing = true
 
 [node name="Sprite8" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( -47.5, 8.5 )
 frames = SubResource( 16 )
-frame = 7
+frame = 12
 playing = true
 
 [node name="Sprite9" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( -73.5, 6.5 )
 frames = SubResource( 16 )
-frame = 6
+frame = 11
 playing = true
 
 [node name="Sprite10" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( -53.5, -15.5 )
 frames = SubResource( 16 )
-frame = 5
+frame = 10
 playing = true
 
 [node name="Sprite11" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( -75.5, -19.5 )
 frames = SubResource( 16 )
-frame = 5
+frame = 10
 playing = true
 
 [node name="Sprite12" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( -35, 5 )
 frames = SubResource( 16 )
-frame = 7
+frame = 12
 playing = true
 
 [node name="Sprite13" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( -16.5, 20.5 )
 frames = SubResource( 16 )
-frame = 7
+frame = 12
 playing = true
 
 [node name="Sprite14" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( -42.5, 18.5 )
 frames = SubResource( 16 )
-frame = 6
+frame = 11
 playing = true
 
 [node name="Sprite15" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( -22.5, -3.5 )
 frames = SubResource( 16 )
-frame = 5
+frame = 10
 playing = true
 
 [node name="Sprite16" type="AnimatedSprite" parent="Sprite"]
 position = Vector2( -44.5, -7.5 )
 frames = SubResource( 16 )
-frame = 5
+frame = 10
 playing = true
 
 [connection signal="body_entered" from="Sprite/Area2D" to="." method="_on_Area2D_body_entered"]

@@ -4,8 +4,8 @@ export(Array, Texture) var PossibleTextures
 var currentTexture = 0
 
 export(Texture) var GhostTexture
+export(Texture) var GhostdolfTexture
 var shouldGhost = false
-var isGhost = false
 
 enum PositionState { Floor, Air, Dead }
 var currentPositionState
@@ -140,7 +140,7 @@ func play_state_animation():
 		$PlayerSprite/AnimationPlayer.play("jump")
 	elif (currentPositionState == PositionState.Air and velocity.y >= 0):
 		$PlayerSprite/AnimationPlayer.play("fall")
-	else:
+	elif currentPositionState != PositionState.Dead:
 		if iced:
 			$PlayerSprite/AnimationPlayer.play("ice")
 		else:
@@ -162,15 +162,19 @@ func check_end():
 		return
 		
 	#Check for ghost stuff
-	if shouldGhost and not isGhost:
+	if shouldGhost:
 		ghost_time()
 		return
 	
 	death()
 	
 func ghost_time():
-	$PlayerSprite.set_texture(GhostTexture)
-	isGhost = true
+	if currentTexture == PossibleTextures.size() - 1 :
+		$PlayerSprite.set_texture(GhostdolfTexture)
+	else:
+		$PlayerSprite.set_texture(GhostTexture)
+		
+	shouldGhost = false
 	
 func death():
 	$DeathTimer.start()
