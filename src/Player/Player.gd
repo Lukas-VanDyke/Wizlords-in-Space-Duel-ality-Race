@@ -125,6 +125,7 @@ func send_blam():
 		
 	newBlam.position.x += newX
 	add_child(newBlam)
+	$"Sounds/Blam Blam".play()
 
 func _physics_process(delta):
 	if not begun: return
