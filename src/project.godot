@@ -18,6 +18,10 @@ config/icon="res://duel-ality_race_icon.png"
 
 WizLord="*res://Managers/WizLord.gd"
 
+[global]
+
+touch=false
+
 [input]
 
 jump={
@@ -25,6 +29,10 @@ jump={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [physics]
 
