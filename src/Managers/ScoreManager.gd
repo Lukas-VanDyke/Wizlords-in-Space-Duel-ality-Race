@@ -22,7 +22,8 @@ func get_score():
 	for key in trap_counts:
 		if key == "Traps": continue
 		score += trap_values[key] * trap_counts[key]
-	return score * trap_freqs["Traps"] / 100
+	# There is a 20% bonus for overall trap frequency 
+	return score * (1+trap_freqs["Traps"] / 500)
 
 func _continue_pressed():
 	WizLord.play_one_shot("continue")
