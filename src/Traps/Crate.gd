@@ -4,7 +4,9 @@ var triggered = false
 
 func _on_Area2D_body_entered(body):
 	if body is KinematicBody2D and not triggered:
-		$Sprite.visible = false
+		$Sprite.play()
+		$Sprite/Sprite.play()
+		$Sprite/Sprite2.play()
 		triggered = true
 		$Explosion.play()
 		$Fire.emitting = true
@@ -12,7 +14,9 @@ func _on_Area2D_body_entered(body):
 
 
 func _on_Trigger_body_entered(body):
-	$Sprite.visible = false
+	$Sprite.play()
+	$Sprite/Sprite.play()
+	$Sprite/Sprite2.play()
 	triggered = true
 	$Explosion.play()
 	$Fire.emitting = true
