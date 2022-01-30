@@ -3,7 +3,7 @@ extends KinematicBody2D
 export(Array, Texture) var PossibleTextures
 var currentTexture = 0
 
-enum PositionState { Floor, Air }
+enum PositionState { Floor, Air, Dead }
 var currentPositionState
 
 var currentSpeed = 0
@@ -87,6 +87,7 @@ func ward_end():
 
 func _physics_process(delta):
 	if not begun: return
+	if currentPositionState == PositionState.Dead: return
 	
 	if currentPositionState == PositionState.Air:
 		velocity.y += gravity * delta
@@ -158,6 +159,20 @@ func check_end():
 	#Check for ghost stuff
 	
 	end_game()
+	
+func death():
+	$DeathExplosion.frame = 0
+	$DeathExplosion.show()
+	$DeathExplosion.play()
+	
+	$PlayerSprite/AnimationPlayer.play("death")
+	currentPositionState = PositionState.Dead
+	currentSpeed = 0
+	velocity = Vector2(0, 0)
+	
+func death_explosion_finished():
+	$DeathExplosion.hide()
 		
 func end_game():
+	death()
 	print("dead")
