@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/Characters/01 Red.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Art/Characters/06 White.png" type="Texture" id=15]
 [ext_resource path="res://Art/Items/Ward-Sheet-Opaque.png" type="Texture" id=16]
 [ext_resource path="res://Art/Items/Ward-Sheet-Transparent.png" type="Texture" id=17]
+[ext_resource path="res://Art/Explosion-Sheet.png" type="Texture" id=18]
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
@@ -71,6 +72,22 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="Animation" id=21]
+resource_name = "death"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 18, 19 ]
+}
+
 [sub_resource type="Animation" id=5]
 resource_name = "fall"
 length = 0.1
@@ -86,6 +103,24 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 13 ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "ice"
+length = 0.25
+loop = true
+step = 0.125
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.125 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 16, 17 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -161,6 +196,54 @@ animations = [ {
 "speed": 9.0
 } ]
 
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 18 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 18 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 18 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 18 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 18 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 18 )
+region = Rect2( 384, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 18 )
+region = Rect2( 448, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=30]
+animations = [ {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
+"loop": false,
+"name": "deathsplosion",
+"speed": 7.0
+} ]
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 23 )
 
@@ -186,7 +269,9 @@ vframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSprite"]
 anims/RESET = SubResource( 3 )
+anims/death = SubResource( 21 )
 anims/fall = SubResource( 5 )
+anims/ice = SubResource( 20 )
 anims/jump = SubResource( 4 )
 anims/run = SubResource( 2 )
 
@@ -194,6 +279,11 @@ anims/run = SubResource( 2 )
 visible = false
 frames = SubResource( 19 )
 animation = "ward"
+
+[node name="DeathExplosion" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 30 )
+animation = "deathsplosion"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 2 )
@@ -208,6 +298,7 @@ wait_time = 3.0
 
 [node name="IceTimer" type="Timer" parent="."]
 
+[connection signal="animation_finished" from="DeathExplosion" to="." method="death_explosion_finished"]
 [connection signal="timeout" from="IncreaseSpeedTimer" to="." method="increase_speed"]
 [connection signal="timeout" from="WardTimer" to="." method="ward_end"]
 [connection signal="timeout" from="IceTimer" to="." method="ice_end"]

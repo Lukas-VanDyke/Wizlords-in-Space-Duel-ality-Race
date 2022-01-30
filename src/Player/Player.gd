@@ -3,7 +3,7 @@ extends KinematicBody2D
 export(Array, Texture) var PossibleTextures
 var currentTexture = 0
 
-enum PositionState { Floor, Air }
+enum PositionState { Floor, Air, Dead }
 var currentPositionState
 
 var currentSpeed = 0
@@ -66,9 +66,12 @@ func double_jump():
 func start_ice():
 	iced = true
 	$IceTimer.start()
+	$PlayerSprite/AnimationPlayer.play("ice")
 	
 func ice_end():
 	iced = false
+	$PlayerSprite/AnimationPlayer.play("run")
+	$IceTimer.stop()
 	
 func start_ward():
 	warded = true
@@ -84,6 +87,7 @@ func ward_end():
 
 func _physics_process(delta):
 	if not begun: return
+	if currentPositionState == PositionState.Dead: return
 	
 	if currentPositionState == PositionState.Air:
 		velocity.y += gravity * delta
@@ -132,7 +136,10 @@ func play_state_animation():
 	elif (currentPositionState == PositionState.Air and velocity.y >= 0):
 		$PlayerSprite/AnimationPlayer.play("fall")
 	else:
-		$PlayerSprite/AnimationPlayer.play("run")
+		if iced:
+			$PlayerSprite/AnimationPlayer.play("ice")
+		else:
+			$PlayerSprite/AnimationPlayer.play("run")
 
 func _hit_trap(var trap):
 	if (trap == "ice_start"):
@@ -152,6 +159,20 @@ func check_end():
 	#Check for ghost stuff
 	
 	end_game()
+	
+func death():
+	$DeathExplosion.frame = 0
+	$DeathExplosion.show()
+	$DeathExplosion.play()
+	
+	$PlayerSprite/AnimationPlayer.play("death")
+	currentPositionState = PositionState.Dead
+	currentSpeed = 0
+	velocity = Vector2(0, 0)
+	
+func death_explosion_finished():
+	$DeathExplosion.hide()
 		
 func end_game():
+	death()
 	print("dead")
