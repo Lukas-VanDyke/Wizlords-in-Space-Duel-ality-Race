@@ -11,6 +11,7 @@ onready var crate_tile = load("res://Traps/Crate.tscn")
 
 var trap_dict = null
 var trap_frequency = null
+var trap_count_dict = null
 
 var current_slice = 0
 export var y_pos = 500
@@ -19,11 +20,13 @@ export var y_pos = 500
 func begin():
 	randomize()
 	trap_dict = WizLord.get_traps()
+	trap_count_dict = {}
 	var total_frequency = 0
 	trap_frequency = trap_dict["Traps"]
 	for key in trap_dict:
 		if key == "Traps": continue
 		total_frequency += trap_dict[key]
+		trap_count_dict[key] = 0
 	if total_frequency == 0:
 		total_frequency = 1
 	for key in trap_dict:
@@ -45,18 +48,32 @@ func get_next_tile():
 		var tile = randf() * 100
 
 		if tile < trap_dict["Spike"]:
+			trap_count_dict["Spike"] += 1
+			WizLord.set_trap_counts(trap_count_dict)
 			return spike_tile.instance()
 		elif tile < trap_dict["Spike"] + trap_dict["Lava"]:
+			trap_count_dict["Lava"] += 1
+			WizLord.set_trap_counts(trap_count_dict)
 			return lava_tile.instance()
 		elif tile < trap_dict["Spike"] + trap_dict["Lava"] + trap_dict["Magic Missile"]:
+			trap_count_dict["Magic Missile"] += 1
+			WizLord.set_trap_counts(trap_count_dict)
 			return magic_missile_tile.instance()
 		elif tile < trap_dict["Spike"] + trap_dict["Lava"] + trap_dict["Magic Missile"] + trap_dict["Monster"]:
+			trap_count_dict["Monster"] += 1
+			WizLord.set_trap_counts(trap_count_dict)
 			return monster_tile.instance()
 		elif tile < trap_dict["Spike"] + trap_dict["Lava"] + trap_dict["Magic Missile"] + trap_dict["Monster"] + trap_dict["Wind"]:
+			trap_count_dict["Wind"] += 1
+			WizLord.set_trap_counts(trap_count_dict)
 			return wind_tile.instance()
 		elif tile < trap_dict["Spike"] + trap_dict["Lava"] + trap_dict["Magic Missile"] + trap_dict["Monster"] + trap_dict["Wind"] + trap_dict["Crate"]:
+			trap_count_dict["Crate"] += 1
+			WizLord.set_trap_counts(trap_count_dict)
 			return crate_tile.instance()
 		else:
+			trap_count_dict["Ice"] += 1
+			WizLord.set_trap_counts(trap_count_dict)
 			return ice_tile.instance()
 	
 

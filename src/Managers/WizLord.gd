@@ -1,8 +1,8 @@
 extends Node
 
 var current_scene = null
-var current_traps = null
-
+var current_traps = {"Traps": 20, "Wind": 1, "Spike": 1, "Lava": 1, "Ice":100, "Magic Missile":1, "Monster":1, "Crate":1}
+var trap_counts = {"Traps": 20, "Wind": 1, "Spike": 1, "Lava": 1, "Ice":100, "Magic Missile":1, "Monster":1, "Crate":1}
 var current_player_sprite = 0
 
 var shouldGhost = false
@@ -26,6 +26,11 @@ func get_traps():
 	return current_traps
 func set_traps(traps: Dictionary):
 	current_traps = traps
+	
+func get_trap_counts():
+	return trap_counts
+func set_trap_counts(new_counts):
+	trap_counts = new_counts
 	
 func set_player_sprite(newSprite):
 	current_player_sprite = newSprite
