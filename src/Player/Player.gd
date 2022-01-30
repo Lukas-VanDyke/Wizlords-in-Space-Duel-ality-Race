@@ -176,4 +176,4 @@ func death_explosion_finished():
 		
 func end_game():
 	$DeathTimer.stop()
-	print("Game Over")
+	WizLord.wizload("res://Managers/ScoreManager.tscn")
