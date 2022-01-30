@@ -31,7 +31,7 @@ func begin():
 		trap_dict[key] = 100 * (trap_dict[key] / total_frequency)
 
 func init_level():
-	for i in range(5):
+	for i in range(15):
 		var tile = stone_tile.instance()
 		tile.position.x = i * 80
 		tile.position.y = y_pos
@@ -43,8 +43,7 @@ func get_next_tile():
 		return stone_tile.instance()
 	else:
 		var tile = randf() * 100
-		print(tile)
-		print(trap_dict["Spike"])
+
 		if tile < trap_dict["Spike"]:
 			return spike_tile.instance()
 		elif tile < trap_dict["Spike"] + trap_dict["Lava"]:
