@@ -255,7 +255,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 12, 23 )
+extents = Vector2( 7.5, 22 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -301,7 +301,7 @@ frames = SubResource( 30 )
 animation = "deathsplosion"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1, 2 )
+position = Vector2( 1.5, 3 )
 shape = SubResource( 1 )
 
 [node name="IncreaseSpeedTimer" type="Timer" parent="."]
