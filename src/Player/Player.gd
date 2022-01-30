@@ -29,6 +29,9 @@ func _ready():
 	
 	$PlayerSprite.set_texture(PossibleTextures[currentTexture])
 	$PlayerSprite/AnimationPlayer.play("run")
+	
+	$FullWard.play()
+	$TransparentWard.play()
 
 func begin():
 	currentSpeed = startSpeed
