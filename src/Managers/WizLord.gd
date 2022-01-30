@@ -24,6 +24,9 @@ func wizload(path):
 	# The solution is to defer the load to a later time, when
 	# we can be sure that no code from the current scene is running:
 	call_deferred("_deferred_goto_scene", path)
+	
+func play_one_shot(oneShot):
+	music_manager.play_one_shot(oneShot)
 
 func get_traps():
 	return current_traps

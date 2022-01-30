@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Audio/Music/MainMenu.wav" type="AudioStream" id=1]
 [ext_resource path="res://Audio/Music/TrapSelection.wav" type="AudioStream" id=2]
 [ext_resource path="res://Audio/Music/Running.wav" type="AudioStream" id=3]
 [ext_resource path="res://Audio/Music/Score.wav" type="AudioStream" id=4]
 [ext_resource path="res://Managers/MusicManager.gd" type="Script" id=5]
+[ext_resource path="res://Audio/SFX/Continue.wav" type="AudioStream" id=6]
 
 [node name="MusicManager" type="Control"]
 anchor_right = 1.0
@@ -29,3 +30,9 @@ volume_db = -25.0
 [node name="Score" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -25.0
+
+[node name="OneShots" type="Node" parent="."]
+
+[node name="Continue" type="AudioStreamPlayer" parent="OneShots"]
+stream = ExtResource( 6 )
+volume_db = -10.0

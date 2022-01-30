@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/NextPrevious.wav-ace796bb3056693308daf83452bb2a59.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/NextPrevious.wav"
+dest_files=[ "res://.import/NextPrevious.wav-ace796bb3056693308daf83452bb2a59.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
