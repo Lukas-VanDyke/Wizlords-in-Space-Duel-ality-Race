@@ -21,6 +21,7 @@ func _next_character_pressed():
 		currentTexture = 0
 		
 	$CharacterControl/CharacterSprite.set_texture(PossibleTextures[currentTexture])
+	$NextPreviousSound.play()
 	
 func _prev_character_pressed():
 	currentTexture -= 1
@@ -28,7 +29,9 @@ func _prev_character_pressed():
 		currentTexture = PossibleTextures.size() - 1
 		
 	$CharacterControl/CharacterSprite.set_texture(PossibleTextures[currentTexture])
+	$NextPreviousSound.play()
 	
 func _continue_pressed():
+	WizLord.play_one_shot("continue")
 	WizLord.set_player_sprite(currentTexture)
 	WizLord.wizload("res://Menus/TrapSelection.tscn")

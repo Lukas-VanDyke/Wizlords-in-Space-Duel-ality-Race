@@ -1,5 +1,8 @@
 extends Node
 
+onready var music_scene = load("res://Managers/MusicManager.tscn")
+var music_manager = null
+
 var current_scene = null
 var current_traps = null
 
@@ -21,6 +24,9 @@ func wizload(path):
 	# The solution is to defer the load to a later time, when
 	# we can be sure that no code from the current scene is running:
 	call_deferred("_deferred_goto_scene", path)
+	
+func play_one_shot(oneShot):
+	music_manager.play_one_shot(oneShot)
 
 func get_traps():
 	return current_traps
@@ -40,6 +46,10 @@ func get_should_ghost():
 	return shouldGhost
 
 func _deferred_goto_scene(path):
+	if music_manager == null:
+		music_manager = music_scene.instance()
+		get_tree().get_root().add_child(music_manager)
+	
 	# Make sure that the frame is finished drawing before we start the transation
 #	yield(VisualServer, "frame_post_draw")
 	var screenshot = get_viewport().get_texture().get_data()
@@ -59,6 +69,7 @@ func _deferred_goto_scene(path):
 	get_tree().set_current_scene(current_scene)
 	
 	transition(screenshot)
+	music_manager.play_scene(path)
 
 func transition(screenshot):
 	var tween = Tween.new()

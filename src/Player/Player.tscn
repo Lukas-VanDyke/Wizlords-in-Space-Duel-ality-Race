@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/Characters/01 Red.png" type="Texture" id=2]
@@ -20,6 +20,17 @@
 [ext_resource path="res://Art/Explosion-Sheet.png" type="Texture" id=18]
 [ext_resource path="res://Art/Characters/15_Gangdolf.png" type="Texture" id=19]
 [ext_resource path="res://Art/Characters/16_Ghostdolf.png" type="Texture" id=20]
+[ext_resource path="res://Audio/SFX/Spike.wav" type="AudioStream" id=21]
+[ext_resource path="res://Audio/SFX/Wind.wav" type="AudioStream" id=22]
+[ext_resource path="res://Audio/SFX/Lava.wav" type="AudioStream" id=23]
+[ext_resource path="res://Audio/SFX/Ice.wav" type="AudioStream" id=24]
+[ext_resource path="res://Audio/SFX/Magic Missile.wav" type="AudioStream" id=25]
+[ext_resource path="res://Audio/SFX/Jump.wav" type="AudioStream" id=26]
+[ext_resource path="res://Audio/SFX/Ward.wav" type="AudioStream" id=27]
+[ext_resource path="res://Audio/SFX/Double Jump.wav" type="AudioStream" id=28]
+[ext_resource path="res://Audio/SFX/Blam Blam.wav" type="AudioStream" id=29]
+[ext_resource path="res://Audio/SFX/Explosion.wav" type="AudioStream" id=30]
+[ext_resource path="res://Audio/SFX/Monster.wav" type="AudioStream" id=31]
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
@@ -304,6 +315,52 @@ wait_time = 3.0
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 26 )
+volume_db = -30.0
+
+[node name="Double Jump" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 28 )
+volume_db = -20.0
+
+[node name="Ward" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 27 )
+volume_db = -15.0
+
+[node name="Blam Blam" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 29 )
+volume_db = -20.0
+
+[node name="Spike" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 21 )
+volume_db = -5.0
+
+[node name="Ice" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 24 )
+volume_db = -15.0
+
+[node name="Lava" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 23 )
+volume_db = -15.0
+
+[node name="Magic Missile" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 25 )
+volume_db = -15.0
+
+[node name="Explosion" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 30 )
+volume_db = -20.0
+
+[node name="Monster" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 31 )
+volume_db = -10.0
+
+[node name="Wind" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 22 )
+volume_db = -15.0
 
 [connection signal="animation_finished" from="DeathExplosion" to="." method="death_explosion_finished"]
 [connection signal="timeout" from="IncreaseSpeedTimer" to="." method="increase_speed"]

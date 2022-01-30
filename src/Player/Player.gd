@@ -67,6 +67,7 @@ func jump():
 	
 func double_jump():
 	velocity.y = -jumpHeight
+	$"Sounds/Double Jump".play()
 	
 func start_ice():
 	iced = true
@@ -75,14 +76,17 @@ func start_ice():
 	
 func ice_end():
 	iced = false
-	$PlayerSprite/AnimationPlayer.play("run")
 	$IceTimer.stop()
+	
+	if currentPositionState != PositionState.Dead:
+		$PlayerSprite/AnimationPlayer.play("run")
 	
 func start_ward():
 	warded = true
 	$FullWard.show()
 	$TransparentWard.show()
 	$WardTimer.start()
+	$Sounds/Ward.play()
 	
 func ward_end():
 	warded = false
@@ -105,6 +109,7 @@ func _physics_process(delta):
 func get_input():
 	if (Input.is_action_just_pressed("jump") or jumpNext) and can_jump() and not iced:
 		velocity.y = -jumpHeight
+		$Sounds/Jump.play()
 
 #Move the player
 func move(delta):
@@ -147,14 +152,33 @@ func play_state_animation():
 			$PlayerSprite/AnimationPlayer.play("run")
 
 func _hit_trap(var trap):
+	play_hit_sound(trap)
+	
 	if (trap == "ice_start"):
 		start_ice()
 	elif (trap == "wind_start"):
+		$Sounds/Wind.play()
 		slowed = true
 	elif (trap == "wind_end"):
 		slowed = false
 	elif (trap == "lava" or trap == "spikes" or trap == "magic_missile" or trap == "monster" or trap == "explosion"):
 		check_end()
+		
+func play_hit_sound(trap):
+	if (trap == "ice_start"):
+		$Sounds/Ice.play()
+	elif (trap == "wind_start"):
+		$Sounds/Wind.play()
+	elif (trap == "lava"):
+		$Sounds/Lava.play()
+	elif (trap == "spikes"):
+		$Sounds/Spike.play()
+	elif (trap == "magic_missile"):
+		$"Sounds/Magic Missile".play()
+	elif (trap == "monster"):
+		$Sounds/Monster.play()
+	elif (trap == "explosion"):
+		$Sounds/Explosion.play()
 		
 func check_end():
 	if warded:

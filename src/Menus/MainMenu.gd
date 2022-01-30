@@ -11,5 +11,6 @@ func _start_bg(var _val):
 
 func _on_LineEdit_text_changed(new_text):
 	if new_text.to_lower() == "start":
+		WizLord.play_one_shot("continue")
 		WizLord.wizload("res://Player/PlayerSelect.tscn")
 
