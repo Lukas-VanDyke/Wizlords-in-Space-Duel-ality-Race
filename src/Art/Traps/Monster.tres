@@ -3,5 +3,6 @@
 [ext_resource path="res://Art/Slime-Sheet.png" type="Texture" id=1]
 
 [resource]
+flags = 2
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 22, 22 )
+region = Rect2( 2, 0, 18, 16 )
