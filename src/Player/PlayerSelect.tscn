@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Player/PlayerSelect.gd" type="Script" id=1]
 [ext_resource path="res://Art/Background.png" type="Texture" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Art/Characters/09 Retro.png" type="Texture" id=8]
 [ext_resource path="res://Art/Characters/12 Santa.png" type="Texture" id=9]
 [ext_resource path="res://Art/Characters/06 White.png" type="Texture" id=10]
-[ext_resource path="res://Art/Characters/13 Ghost.png" type="Texture" id=11]
 [ext_resource path="res://Art/Characters/07 Black.png" type="Texture" id=12]
 [ext_resource path="res://Art/Characters/14 Gnome.png" type="Texture" id=13]
 [ext_resource path="res://Art/Characters/10 Tech.png" type="Texture" id=14]
@@ -92,7 +91,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-PossibleTextures = [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 16 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 13 ) ]
+PossibleTextures = [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 16 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 9 ), ExtResource( 13 ) ]
 
 [node name="Background" type="Sprite" parent="."]
 material = SubResource( 4 )
