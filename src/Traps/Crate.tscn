@@ -17,13 +17,13 @@ region = Rect2( 160, 0, 80, 80 )
 extents = Vector2( 49.3478, 39.6667 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 200, 73 )
+extents = Vector2( 111.5, 33.5 )
 
 [sub_resource type="ParticlesMaterial" id=5]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 200.0
+initial_velocity = 600.0
 initial_velocity_random = 0.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
@@ -33,7 +33,7 @@ flag_disable_z = true
 direction = Vector3( 0, -1, 0 )
 spread = 90.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 140.63
+initial_velocity = 400.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 
@@ -76,7 +76,7 @@ shape = SubResource( 3 )
 [node name="Trigger" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger"]
-position = Vector2( 29, -155 )
+position = Vector2( 43.5, -115.5 )
 shape = SubResource( 4 )
 
 [node name="Explosion" type="Particles2D" parent="."]
@@ -84,7 +84,6 @@ position = Vector2( 36, -83 )
 scale = Vector2( 0.3, 0.3 )
 emitting = false
 amount = 32
-lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 5 )
