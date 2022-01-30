@@ -36,7 +36,7 @@ func init_level():
 		tile.position.x = i * 80
 		tile.position.y = y_pos
 		add_child(tile)
-	current_slice = 5
+	current_slice = 15
 
 func get_next_tile():
 	if randf() * 100 > trap_frequency:
