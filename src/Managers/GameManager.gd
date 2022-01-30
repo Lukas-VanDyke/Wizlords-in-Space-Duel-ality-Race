@@ -15,6 +15,10 @@ func _ready():
 	$Player.connect("collect_ward", self, "add_ward")
 	$Player.connect("collect_jump", self, "add_jump")
 	$Player.connect("collect_blam", self, "add_blam")
+	
+	$PlayerUI/DoubleJump/CenterContainer/Label.text = "%s" % jumps
+	$PlayerUI/Ward/CenterContainer/Label.text = "%s" % wards
+	$PlayerUI/BlamBlam/CenterContainer/Label.text = "%s" % blams
 
 func begin():
 	$LevelGenerator.begin()
@@ -35,9 +39,11 @@ func _process(delta):
 func add_jump():
 	jumps += 1
 	$PlayerUI/DoubleJump.disabled = false
+	$PlayerUI/DoubleJump/CenterContainer/Label.text = "%s" % jumps
 	
 func use_jump():
 	jumps -= 1
+	$PlayerUI/DoubleJump/CenterContainer/Label.text = "%s" % jumps
 	
 	if jumps == 0:
 		$PlayerUI/DoubleJump.disabled = true
@@ -45,9 +51,11 @@ func use_jump():
 func add_ward():
 	wards += 1
 	$PlayerUI/Ward.disabled = false
+	$PlayerUI/Ward/CenterContainer/Label.text = "%s" % wards
 	
 func use_ward():
 	wards -= 1
+	$PlayerUI/Ward/CenterContainer/Label.text = "%s" % wards
 	
 	if wards == 0:
 		$PlayerUI/Ward.disabled = true
@@ -55,9 +63,11 @@ func use_ward():
 func add_blam():
 	blams += 1
 	$PlayerUI/BlamBlam.disabled = false
+	$PlayerUI/BlamBlam/CenterContainer/Label.text = "%s" % blams
 	
 func use_blam():
 	blams -= 1
+	$PlayerUI/BlamBlam/CenterContainer/Label.text = "%s" % blams
 	
 	if blams == 0:
 		$PlayerUI/BlamBlam.disabled = true

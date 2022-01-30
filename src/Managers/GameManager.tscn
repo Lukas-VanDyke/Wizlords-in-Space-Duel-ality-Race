@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Managers/GameManager.gd" type="Script" id=1]
 [ext_resource path="res://Managers/LevelGenerator.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Art/Button2.png" type="Texture" id=4]
 [ext_resource path="res://Art/Background.png" type="Texture" id=5]
 [ext_resource path="res://Art/Button2-transparent.png" type="Texture" id=6]
+[ext_resource path="res://Art/Items/Potion-Sheet.png" type="Texture" id=7]
+[ext_resource path="res://Art/Items/Feather_of_Bird_01.png" type="Texture" id=8]
+[ext_resource path="res://Art/Items/Scroll-animation-Sheet.png" type="Texture" id=9]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource( 1 )
@@ -53,6 +56,12 @@ margin_bottom = 82.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Air Jump"
 
+[node name="Sprite" type="Sprite" parent="PlayerUI/DoubleJump/CenterContainer"]
+position = Vector2( 74, 43 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
+hframes = 8
+
 [node name="Ward" type="TextureButton" parent="PlayerUI"]
 anchor_top = 0.25
 anchor_right = 0.15
@@ -80,6 +89,11 @@ margin_bottom = 82.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Ward"
 
+[node name="Sprite" type="Sprite" parent="PlayerUI/Ward/CenterContainer"]
+position = Vector2( 75, 44 )
+texture = ExtResource( 7 )
+hframes = 4
+
 [node name="BlamBlam" type="TextureButton" parent="PlayerUI"]
 anchor_top = 0.5
 anchor_right = 0.15
@@ -106,6 +120,11 @@ margin_right = 111.0
 margin_bottom = 82.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Blam Blam"
+
+[node name="Sprite" type="Sprite" parent="PlayerUI/BlamBlam/CenterContainer"]
+position = Vector2( 75, 48 )
+texture = ExtResource( 9 )
+hframes = 6
 
 [node name="JumpButton" type="TextureButton" parent="PlayerUI"]
 anchor_left = 0.15
