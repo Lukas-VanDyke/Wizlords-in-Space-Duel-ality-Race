@@ -3,6 +3,10 @@ extends KinematicBody2D
 export(Array, Texture) var PossibleTextures
 var currentTexture = 0
 
+export(Texture) var GhostTexture
+var shouldGhost = false
+var isGhost = false
+
 enum PositionState { Floor, Air, Dead }
 var currentPositionState
 
@@ -26,6 +30,7 @@ func _ready():
 	connect("hit_trap", self, "_hit_trap")
 	
 	currentTexture = WizLord.get_player_sprite()
+	shouldGhost = WizLord.get_should_ghost()
 	
 	$PlayerSprite.set_texture(PossibleTextures[currentTexture])
 	$PlayerSprite/AnimationPlayer.play("run")
@@ -157,8 +162,15 @@ func check_end():
 		return
 		
 	#Check for ghost stuff
+	if shouldGhost and not isGhost:
+		ghost_time()
+		return
 	
 	death()
+	
+func ghost_time():
+	$PlayerSprite.set_texture(GhostTexture)
+	isGhost = true
 	
 func death():
 	$DeathTimer.start()

@@ -1,10 +1,11 @@
 extends Node
 
-
 var current_scene = null
 var current_traps = null
 
 var current_player_sprite = 0
+
+var shouldGhost = false
 
 func _ready():
 	var root = get_tree().get_root()
@@ -31,6 +32,12 @@ func set_player_sprite(newSprite):
 	
 func get_player_sprite():
 	return current_player_sprite
+	
+func set_should_ghost(ghost):
+	shouldGhost = ghost
+	
+func get_should_ghost():
+	return shouldGhost
 
 func _deferred_goto_scene(path):
 	# Make sure that the frame is finished drawing before we start the transation
