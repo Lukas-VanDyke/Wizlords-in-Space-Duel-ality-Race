@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/Characters/01 Red.png" type="Texture" id=2]
@@ -266,6 +266,8 @@ GhostdolfTexture = ExtResource( 20 )
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 244, 0 )
 current = true
+limit_top = -100
+limit_bottom = 600
 smoothing_enabled = true
 
 [node name="FullWard" type="AnimatedSprite" parent="."]
