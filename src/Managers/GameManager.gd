@@ -14,5 +14,5 @@ func _process(delta):
 	if not begun: return
 
 	var player_pos = $Player.position.x / 80
-	if $LevelGenerator.current_slice < player_pos + 4:
+	if $LevelGenerator.current_slice < player_pos + 10:
 		$LevelGenerator.add_tile()

@@ -91,6 +91,7 @@ script = ExtResource( 1 )
 PossibleTextures = [ ExtResource( 2 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 15 ), ExtResource( 6 ), ExtResource( 14 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 4 ) ]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 244, 0 )
 current = true
 smoothing_enabled = true
 
