@@ -69,17 +69,15 @@ func ice_end():
 	
 func start_ward():
 	warded = true
-	
-	#Show the visibility of the ward bubble
+	$FullWard.show()
+	$TransparentWard.show()
 	$WardTimer.start()
-	print("Ward Started")
 	
 func ward_end():
 	warded = false
-	
-	#Remove the visibility of the ward bubble
+	$FullWard.hide()
+	$TransparentWard.hide()
 	$WardTimer.stop()
-	print("Ward Ended")
 
 func _physics_process(delta):
 	if not begun: return
@@ -134,8 +132,6 @@ func play_state_animation():
 		$PlayerSprite/AnimationPlayer.play("run")
 
 func _hit_trap(var trap):
-	print(trap)
-	
 	if (trap == "ice_start"):
 		start_ice()
 	elif (trap == "wind_start"):
