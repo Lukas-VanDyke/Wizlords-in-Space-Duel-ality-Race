@@ -16,6 +16,9 @@ var velocity = Vector2()
 var jumpNext = false
 var begun = false
 
+var iced = false
+var slowed = false
+
 signal hit_trap(trap)
 
 func _ready():
@@ -68,13 +71,15 @@ func _physics_process(delta):
 	jumpNext = false
 		
 func get_input():
-	if (Input.is_action_just_pressed("jump") or jumpNext) and can_jump():
+	if (Input.is_action_just_pressed("jump") or jumpNext) and can_jump() and not iced:
 		velocity.y = -jumpHeight
 
 #Move the player
 func move(delta):
 	var collision_info = move_and_collide(velocity * delta)
 	velocity.x = currentSpeed
+	if slowed:
+		velocity.x = currentSpeed / 2
 	
 	if collision_info:
 		set_position_state(collision_info)
@@ -108,3 +113,20 @@ func play_state_animation():
 
 func _hit_trap(var trap):
 	print(trap)
+	
+	if (trap == "ice_start"):
+		iced = true
+	elif (trap == "ice_end"):
+		iced = false
+	elif (trap == "wind_start"):
+		slowed = true
+	elif (trap == "wind_end"):
+		slowed = false
+	elif (trap == "lava" or trap == "spikes" or trap == "magic_missile" or trap == "monster" or trap == "explosion"):
+		check_end()
+		
+func check_end():
+	pass
+		
+func end_game():
+	print("dead")
