@@ -2,6 +2,12 @@ extends Node
 
 onready var stone_tile = load("res://Traps/Stone.tscn")
 onready var spike_tile = load("res://Traps/Spikes.tscn")
+onready var lava_tile = load("res://Traps/Lava.tscn")
+onready var ice_tile = load("res://Traps/Ice.tscn")
+onready var magic_missile_tile = load("res://Traps/Magic Missile.tscn")
+onready var monster_tile = load("res://Traps/Monster.tscn")
+onready var wind_tile = load("res://Traps/Wind.tscn")
+onready var crate_tile = load("res://Traps/Crate.tscn")
 
 var trap_dict = null
 var trap_frequency = null
@@ -37,7 +43,23 @@ func get_next_tile():
 		return stone_tile.instance()
 	else:
 		var tile = randf() * 100
-		return spike_tile.instance()
+		print(tile)
+		print(trap_dict["Spike"])
+		if tile < trap_dict["Spike"]:
+			return spike_tile.instance()
+		elif tile < trap_dict["Spike"] + trap_dict["Lava"]:
+			return lava_tile.instance()
+		elif tile < trap_dict["Spike"] + trap_dict["Lava"] + trap_dict["Magic Missile"]:
+			return magic_missile_tile.instance()
+		elif tile < trap_dict["Spike"] + trap_dict["Lava"] + trap_dict["Magic Missile"] + trap_dict["Monster"]:
+			return monster_tile.instance()
+		elif tile < trap_dict["Spike"] + trap_dict["Lava"] + trap_dict["Magic Missile"] + trap_dict["Monster"] + trap_dict["Wind"]:
+			return wind_tile.instance()
+		elif tile < trap_dict["Spike"] + trap_dict["Lava"] + trap_dict["Magic Missile"] + trap_dict["Monster"] + trap_dict["Wind"] + trap_dict["Crate"]:
+			return crate_tile.instance()
+		else:
+			return ice_tile.instance()
+	
 
 func add_tile():
 	var tile = get_next_tile()
