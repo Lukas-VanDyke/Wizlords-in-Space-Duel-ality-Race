@@ -6,3 +6,7 @@ func _ready():
 
 func _continue_pressed():
 	WizLord.wizload("res://Menus/MainMenu.tscn")
+
+
+func _on_Retry_pressed():
+	WizLord.wizload("res://Managers/GameManager.tscn")
