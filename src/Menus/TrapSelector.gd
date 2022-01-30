@@ -13,7 +13,7 @@ onready var traps_tile = load("res://Art/Traps/Traps.tres")
 export(String, "Spike", "Lava", "Ice", "Magic Missile", "Monster", "Wind", "Crate", "Traps") var item
 
 
-export var freq = 0
+export var freq = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,6 +36,7 @@ func _ready():
 			$Item.texture = traps_tile
 
 	$Item/Label/Slider.value = freq
+	$Item/Label.text = str(freq)
 
 func _on_Slider_value_changed(value):
 	$Item/Label.text = str(value)
