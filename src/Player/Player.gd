@@ -20,6 +20,9 @@ signal hit_trap(trap)
 
 func _ready():
 	connect("hit_trap", self, "_hit_trap")
+	
+	currentTexture = WizLord.get_player_sprite()
+	
 	$PlayerSprite.set_texture(PossibleTextures[currentTexture])
 	$PlayerSprite/AnimationPlayer.play("run")
 

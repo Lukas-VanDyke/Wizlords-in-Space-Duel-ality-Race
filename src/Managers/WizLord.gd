@@ -4,6 +4,8 @@ extends Node
 var current_scene = null
 var current_traps = null
 
+var current_player_sprite = 0
+
 func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
@@ -23,6 +25,12 @@ func get_traps():
 	return current_traps
 func set_traps(traps: Dictionary):
 	current_traps = traps
+	
+func set_player_sprite(newSprite):
+	current_player_sprite = newSprite
+	
+func get_player_sprite():
+	return current_player_sprite
 
 func _deferred_goto_scene(path):
 	# Make sure that the frame is finished drawing before we start the transation
