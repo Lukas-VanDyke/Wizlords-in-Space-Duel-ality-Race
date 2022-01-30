@@ -134,7 +134,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="PlayerUI/DoubleJump" to="." method="use_jump"]
 [connection signal="pressed" from="PlayerUI/DoubleJump" to="Player" method="double_jump"]
 [connection signal="pressed" from="PlayerUI/Ward" to="." method="use_ward"]
 [connection signal="pressed" from="PlayerUI/Ward" to="Player" method="start_ward"]

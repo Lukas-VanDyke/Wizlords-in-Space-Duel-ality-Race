@@ -15,6 +15,8 @@ func _ready():
 	$Player.connect("collect_ward", self, "add_ward")
 	$Player.connect("collect_jump", self, "add_jump")
 	$Player.connect("collect_blam", self, "add_blam")
+	$Player.connect("use_jump", self, "use_jump")
+	$Player.connect("try_double_jump", self, "try_double_jump")
 	
 	$PlayerUI/DoubleJump/CenterContainer/Label.text = "%s" % jumps
 	$PlayerUI/Ward/CenterContainer/Label.text = "%s" % wards
@@ -71,3 +73,7 @@ func use_blam():
 	
 	if blams == 0:
 		$PlayerUI/BlamBlam.disabled = true
+		
+func try_double_jump():
+	if jumps > 0:
+		$Player.double_jump()

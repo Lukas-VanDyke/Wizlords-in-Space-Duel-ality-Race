@@ -32,6 +32,8 @@ signal hit_trap(trap)
 signal collect_ward
 signal collect_jump
 signal collect_blam
+signal use_jump
+signal try_double_jump
 
 func _ready():
 	connect("hit_trap", self, "_hit_trap")
@@ -75,6 +77,8 @@ func jump():
 func double_jump():
 	velocity.y = -jumpHeight
 	$"Sounds/Double Jump".play()
+	
+	emit_signal("use_jump")
 	
 func start_ice():
 	iced = true
@@ -140,9 +144,12 @@ func _physics_process(delta):
 	jumpNext = false
 		
 func get_input():
-	if (Input.is_action_just_pressed("jump") or jumpNext) and can_jump() and not iced:
-		velocity.y = -jumpHeight
-		$Sounds/Jump.play()
+	if (Input.is_action_just_pressed("jump") or jumpNext) and not iced:
+		if currentPositionState == PositionState.Floor:
+			velocity.y = -jumpHeight
+			$Sounds/Jump.play()
+		else: 
+			emit_signal("try_double_jump")
 
 #Move the player
 func move(delta):
@@ -170,9 +177,6 @@ func set_position_state(collision):
 		
 		if normal == Vector2.RIGHT:
 			velocity.x = 0
-			
-func can_jump():
-	return currentPositionState == PositionState.Floor
 	
 #Play animation based on the current state
 func play_state_animation():
