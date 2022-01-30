@@ -115,4 +115,8 @@ shape = SubResource( 1 )
 wait_time = 5.0
 autostart = true
 
+[node name="WardTimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="timeout" from="IncreaseSpeedTimer" to="." method="increase_speed"]
+[connection signal="timeout" from="WardTimer" to="." method="ward_end"]

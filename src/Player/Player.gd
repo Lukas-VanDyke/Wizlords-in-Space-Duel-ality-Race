@@ -18,6 +18,7 @@ var begun = false
 
 var iced = false
 var slowed = false
+var warded = false
 
 signal hit_trap(trap)
 
@@ -58,6 +59,20 @@ func jump():
 	
 func double_jump():
 	velocity.y = -jumpHeight
+	
+func start_ward():
+	warded = true
+	
+	#Show the visibility of the ward bubble
+	$WardTimer.start()
+	print("Ward Started")
+	
+func ward_end():
+	warded = false
+	
+	#Remove the visibility of the ward bubble
+	$WardTimer.stop()
+	print("Ward Ended")
 
 func _physics_process(delta):
 	if not begun: return
@@ -126,7 +141,13 @@ func _hit_trap(var trap):
 		check_end()
 		
 func check_end():
-	pass
+	if warded:
+		ward_end()
+		return
+		
+	#Check for ghost stuff
+	
+	end_game()
 		
 func end_game():
 	print("dead")
