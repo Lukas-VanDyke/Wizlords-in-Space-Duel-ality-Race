@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Audio/Music/MainMenu.wav" type="AudioStream" id=1]
+[ext_resource path="res://Audio/Music/TrapSelection.wav" type="AudioStream" id=2]
+[ext_resource path="res://Audio/Music/Running.wav" type="AudioStream" id=3]
+[ext_resource path="res://Audio/Music/Score.wav" type="AudioStream" id=4]
+[ext_resource path="res://Managers/MusicManager.gd" type="Script" id=5]
+
+[node name="MusicManager" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -25.0
+
+[node name="TrapSelection" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -25.0
+
+[node name="Gameplay" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -25.0
+
+[node name="Score" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -25.0

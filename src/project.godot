@@ -12,7 +12,7 @@ config_version=4
 
 config/name="Wizlords in Space: Duel-ality Race"
 run/main_scene="res://Menus/WizbizLogo.tscn"
-config/icon="res://icon.png"
+config/icon="res://duel-ality_race_icon.png"
 
 [autoload]
 

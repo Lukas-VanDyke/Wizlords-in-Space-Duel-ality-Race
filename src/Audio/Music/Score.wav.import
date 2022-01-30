@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Score.wav-957228a452b204c7e04533cc58d8423d.sample"
+
+[deps]
+
+source_file="res://Audio/Music/Score.wav"
+dest_files=[ "res://.import/Score.wav-957228a452b204c7e04533cc58d8423d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0
