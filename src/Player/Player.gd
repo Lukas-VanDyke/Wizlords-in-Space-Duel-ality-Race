@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+onready var FireBlam = load("res://Items/FireBlam.tscn")
+onready var IceBlam = load("res://Items/IceBlam.tscn")
+
 export(Array, Texture) var PossibleTextures
 var currentTexture = 0
 
@@ -107,6 +110,21 @@ func ward_end():
 	$FullWard.hide()
 	$TransparentWard.hide()
 	$WardTimer.stop()
+	
+func send_blam():
+	var newBlam = null
+	var newX = 40
+	
+	if currentPositionState == PositionState.Dead:
+		return
+	elif currentPositionState == PositionState.Air:
+		newBlam = FireBlam.instance()
+		newX = 80
+	elif currentPositionState == PositionState.Floor:
+		newBlam = IceBlam.instance()
+		
+	newBlam.position.x += newX
+	add_child(newBlam)
 
 func _physics_process(delta):
 	if not begun: return

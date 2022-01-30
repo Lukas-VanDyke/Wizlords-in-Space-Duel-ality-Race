@@ -4,26 +4,32 @@
 [ext_resource path="res://Art/Items/Scroll-animation-Sheet.png" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 16, 18 )
 
 [sub_resource type="AtlasTexture" id=2]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 16, 0, 16, 18 )
 
 [sub_resource type="AtlasTexture" id=3]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 32, 0, 16, 18 )
 
 [sub_resource type="AtlasTexture" id=4]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 48, 0, 16, 18 )
 
 [sub_resource type="AtlasTexture" id=5]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 64, 0, 16, 18 )
 
 [sub_resource type="AtlasTexture" id=6]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 80, 0, 16, 18 )
 
@@ -45,7 +51,7 @@ script = ExtResource( 1 )
 position = Vector2( 16, -16 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 7 )
-frame = 2
+frame = 4
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
