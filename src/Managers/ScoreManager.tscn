@@ -76,4 +76,30 @@ margin_bottom = 22.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Continue"
 
+[node name="Retry" type="TextureButton" parent="."]
+anchor_left = 0.05
+anchor_top = 0.8
+anchor_right = 0.2
+anchor_bottom = 0.85
+toggle_mode = true
+texture_normal = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Retry"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Retry/CenterContainer"]
+margin_left = 60.0
+margin_top = 8.0
+margin_right = 93.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Retry"
+
 [connection signal="pressed" from="Continue" to="." method="_continue_pressed"]
+[connection signal="pressed" from="Retry" to="." method="_on_Retry_pressed"]

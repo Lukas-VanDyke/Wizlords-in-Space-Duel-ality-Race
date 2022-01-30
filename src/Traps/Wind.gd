@@ -3,8 +3,11 @@ extends Node2D
 export var speed = 150
 
 func _ready():
-	pass
+	speed = rand_range(100, 240)
 	$Sprite.position.y = rand_range(-120, -200)
+	for child in $Sprite.get_children():
+		if child is AnimatedSprite:
+			child.frame = int(rand_range(0.0, 13.0))
 
 func _process(delta):
 	$Sprite.position.x -= delta * speed
