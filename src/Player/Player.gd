@@ -66,9 +66,12 @@ func double_jump():
 func start_ice():
 	iced = true
 	$IceTimer.start()
+	$PlayerSprite/AnimationPlayer.play("ice")
 	
 func ice_end():
 	iced = false
+	$PlayerSprite/AnimationPlayer.play("run")
+	$IceTimer.stop()
 	
 func start_ward():
 	warded = true
@@ -132,7 +135,10 @@ func play_state_animation():
 	elif (currentPositionState == PositionState.Air and velocity.y >= 0):
 		$PlayerSprite/AnimationPlayer.play("fall")
 	else:
-		$PlayerSprite/AnimationPlayer.play("run")
+		if iced:
+			$PlayerSprite/AnimationPlayer.play("ice")
+		else:
+			$PlayerSprite/AnimationPlayer.play("run")
 
 func _hit_trap(var trap):
 	if (trap == "ice_start"):
