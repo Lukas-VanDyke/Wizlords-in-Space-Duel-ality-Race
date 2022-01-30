@@ -4,6 +4,7 @@ export(Array, Texture) var PossibleTextures
 var currentTexture = 0
 
 export(Texture) var GhostTexture
+export(Texture) var GhostdolfTexture
 var shouldGhost = false
 var isGhost = false
 
@@ -169,7 +170,10 @@ func check_end():
 	death()
 	
 func ghost_time():
-	$PlayerSprite.set_texture(GhostTexture)
+	if currentTexture == PossibleTextures.size() - 1 :
+		$PlayerSprite.set_texture(GhostdolfTexture)
+	else:
+		$PlayerSprite.set_texture(GhostTexture)
 	isGhost = true
 	
 func death():

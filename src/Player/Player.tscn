@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/Characters/01 Red.png" type="Texture" id=2]
@@ -18,6 +18,8 @@
 [ext_resource path="res://Art/Items/Ward-Sheet-Opaque.png" type="Texture" id=16]
 [ext_resource path="res://Art/Items/Ward-Sheet-Transparent.png" type="Texture" id=17]
 [ext_resource path="res://Art/Explosion-Sheet.png" type="Texture" id=18]
+[ext_resource path="res://Art/Characters/15_Gangdolf.png" type="Texture" id=19]
+[ext_resource path="res://Art/Characters/16_Ghostdolf.png" type="Texture" id=20]
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
@@ -249,8 +251,9 @@ extents = Vector2( 12, 23 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
-PossibleTextures = [ ExtResource( 2 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 15 ), ExtResource( 6 ), ExtResource( 14 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 7 ), ExtResource( 4 ) ]
+PossibleTextures = [ ExtResource( 2 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 15 ), ExtResource( 6 ), ExtResource( 14 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 19 ) ]
 GhostTexture = ExtResource( 11 )
+GhostdolfTexture = ExtResource( 20 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 244, 0 )
