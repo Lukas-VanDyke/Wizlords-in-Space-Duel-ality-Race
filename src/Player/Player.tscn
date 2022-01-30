@@ -298,7 +298,11 @@ wait_time = 3.0
 
 [node name="IceTimer" type="Timer" parent="."]
 
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="animation_finished" from="DeathExplosion" to="." method="death_explosion_finished"]
 [connection signal="timeout" from="IncreaseSpeedTimer" to="." method="increase_speed"]
 [connection signal="timeout" from="WardTimer" to="." method="ward_end"]
 [connection signal="timeout" from="IceTimer" to="." method="ice_end"]
+[connection signal="timeout" from="DeathTimer" to="." method="end_game"]
