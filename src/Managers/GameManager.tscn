@@ -117,5 +117,8 @@ __meta__ = {
 
 [connection signal="pressed" from="PlayerUI/DoubleJump" to="." method="use_jump"]
 [connection signal="pressed" from="PlayerUI/DoubleJump" to="Player" method="double_jump"]
+[connection signal="pressed" from="PlayerUI/Ward" to="." method="use_ward"]
 [connection signal="pressed" from="PlayerUI/Ward" to="Player" method="start_ward"]
+[connection signal="pressed" from="PlayerUI/BlamBlam" to="." method="use_blam"]
+[connection signal="pressed" from="PlayerUI/BlamBlam" to="Player" method="send_blam"]
 [connection signal="pressed" from="PlayerUI/JumpButton" to="Player" method="jump"]
