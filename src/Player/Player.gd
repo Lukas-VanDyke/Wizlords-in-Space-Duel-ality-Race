@@ -158,9 +158,10 @@ func check_end():
 		
 	#Check for ghost stuff
 	
-	end_game()
+	death()
 	
 func death():
+	$DeathTimer.start()
 	$DeathExplosion.frame = 0
 	$DeathExplosion.show()
 	$DeathExplosion.play()
@@ -174,5 +175,5 @@ func death_explosion_finished():
 	$DeathExplosion.hide()
 		
 func end_game():
-	death()
-	print("dead")
+	$DeathTimer.stop()
+	print("Game Over")
