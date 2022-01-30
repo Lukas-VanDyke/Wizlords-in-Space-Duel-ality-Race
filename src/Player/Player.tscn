@@ -118,5 +118,8 @@ autostart = true
 [node name="WardTimer" type="Timer" parent="."]
 wait_time = 3.0
 
+[node name="IceTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="IncreaseSpeedTimer" to="." method="increase_speed"]
 [connection signal="timeout" from="WardTimer" to="." method="ward_end"]
+[connection signal="timeout" from="IceTimer" to="." method="ice_end"]

@@ -60,6 +60,13 @@ func jump():
 func double_jump():
 	velocity.y = -jumpHeight
 	
+func start_ice():
+	iced = true
+	$IceTimer.start()
+	
+func ice_end():
+	iced = false
+	
 func start_ward():
 	warded = true
 	
@@ -130,9 +137,7 @@ func _hit_trap(var trap):
 	print(trap)
 	
 	if (trap == "ice_start"):
-		iced = true
-	elif (trap == "ice_end"):
-		iced = false
+		start_ice()
 	elif (trap == "wind_start"):
 		slowed = true
 	elif (trap == "wind_end"):
