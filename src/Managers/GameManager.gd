@@ -12,6 +12,9 @@ func _ready():
 	$PlayerUI/BlamBlam.disabled = true
 	
 	$LevelGenerator.init_level() # add start tiles to game
+	$Player.connect("collect_ward", self, "add_ward")
+	$Player.connect("collect_jump", self, "add_jump")
+	$Player.connect("collect_blam", self, "add_blam")
 
 func begin():
 	$LevelGenerator.begin()
@@ -22,7 +25,7 @@ func _process(delta):
 	if not begun: return
 
 	var player_pos = $Player.position.x / 80
-	if $LevelGenerator.current_slice < player_pos + 10:
+	if $LevelGenerator.current_slice < player_pos + 15:
 		$LevelGenerator.add_tile()
 	if $Player.position.x > $BG1.position.x + 2000:
 		$BG1.position.x += 5000 

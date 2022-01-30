@@ -33,32 +33,26 @@
 [ext_resource path="res://Audio/SFX/Monster.wav" type="AudioStream" id=31]
 
 [sub_resource type="AtlasTexture" id=6]
-flags = 4
 atlas = ExtResource( 16 )
 region = Rect2( 0, 0, 32, 57 )
 
 [sub_resource type="AtlasTexture" id=7]
-flags = 4
 atlas = ExtResource( 16 )
 region = Rect2( 32, 0, 32, 57 )
 
 [sub_resource type="AtlasTexture" id=8]
-flags = 4
 atlas = ExtResource( 16 )
 region = Rect2( 64, 0, 32, 57 )
 
 [sub_resource type="AtlasTexture" id=9]
-flags = 4
 atlas = ExtResource( 16 )
 region = Rect2( 96, 0, 32, 57 )
 
 [sub_resource type="AtlasTexture" id=10]
-flags = 4
 atlas = ExtResource( 16 )
 region = Rect2( 128, 0, 32, 57 )
 
 [sub_resource type="AtlasTexture" id=11]
-flags = 4
 atlas = ExtResource( 16 )
 region = Rect2( 160, 0, 32, 57 )
 
@@ -118,6 +112,23 @@ tracks/0/keys = {
 "values": [ 13 ]
 }
 
+[sub_resource type="Animation" id=31]
+resource_name = "fire"
+length = 0.25
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 14, 15 ]
+}
+
 [sub_resource type="Animation" id=20]
 resource_name = "ice"
 length = 0.25
@@ -172,32 +183,26 @@ tracks/0/keys = {
 }
 
 [sub_resource type="AtlasTexture" id=13]
-flags = 4
 atlas = ExtResource( 17 )
 region = Rect2( 0, 0, 32, 57 )
 
 [sub_resource type="AtlasTexture" id=14]
-flags = 4
 atlas = ExtResource( 17 )
 region = Rect2( 32, 0, 32, 57 )
 
 [sub_resource type="AtlasTexture" id=15]
-flags = 4
 atlas = ExtResource( 17 )
 region = Rect2( 64, 0, 32, 57 )
 
 [sub_resource type="AtlasTexture" id=16]
-flags = 4
 atlas = ExtResource( 17 )
 region = Rect2( 96, 0, 32, 57 )
 
 [sub_resource type="AtlasTexture" id=17]
-flags = 4
 atlas = ExtResource( 17 )
 region = Rect2( 128, 0, 32, 57 )
 
 [sub_resource type="AtlasTexture" id=18]
-flags = 4
 atlas = ExtResource( 17 )
 region = Rect2( 160, 0, 32, 57 )
 
@@ -210,42 +215,34 @@ animations = [ {
 } ]
 
 [sub_resource type="AtlasTexture" id=22]
-flags = 4
 atlas = ExtResource( 18 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=23]
-flags = 4
 atlas = ExtResource( 18 )
 region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=24]
-flags = 4
 atlas = ExtResource( 18 )
 region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=25]
-flags = 4
 atlas = ExtResource( 18 )
 region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=26]
-flags = 4
 atlas = ExtResource( 18 )
 region = Rect2( 256, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=27]
-flags = 4
 atlas = ExtResource( 18 )
 region = Rect2( 320, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=28]
-flags = 4
 atlas = ExtResource( 18 )
 region = Rect2( 384, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=29]
-flags = 4
 atlas = ExtResource( 18 )
 region = Rect2( 448, 0, 64, 64 )
 
@@ -286,6 +283,7 @@ vframes = 5
 anims/RESET = SubResource( 3 )
 anims/death = SubResource( 21 )
 anims/fall = SubResource( 5 )
+anims/fire = SubResource( 31 )
 anims/ice = SubResource( 20 )
 anims/jump = SubResource( 4 )
 anims/run = SubResource( 2 )
@@ -312,6 +310,10 @@ autostart = true
 wait_time = 3.0
 
 [node name="IceTimer" type="Timer" parent="."]
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -366,4 +368,5 @@ volume_db = -15.0
 [connection signal="timeout" from="IncreaseSpeedTimer" to="." method="increase_speed"]
 [connection signal="timeout" from="WardTimer" to="." method="ward_end"]
 [connection signal="timeout" from="IceTimer" to="." method="ice_end"]
+[connection signal="timeout" from="FireTimer" to="." method="fire_end"]
 [connection signal="timeout" from="DeathTimer" to="." method="end_game"]
