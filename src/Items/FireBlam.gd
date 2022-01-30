@@ -21,7 +21,7 @@ func _physics_process(delta):
 	global_position.y = initialY
 	
 func _hit_trap(trap):
-	if trap != "monster":
+	if trap != "monster" and trap != "explosion":
 		return
 		
 	remove()

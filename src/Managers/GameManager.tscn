@@ -33,6 +33,7 @@ position = Vector2( 91, 375 )
 [node name="DoubleJump" type="TextureButton" parent="PlayerUI"]
 anchor_right = 0.15
 anchor_bottom = 0.25
+focus_mode = 0
 texture_normal = ExtResource( 4 )
 texture_disabled = ExtResource( 6 )
 expand = true

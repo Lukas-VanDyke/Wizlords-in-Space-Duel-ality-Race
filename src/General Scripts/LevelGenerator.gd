@@ -37,16 +37,16 @@ func begin():
 		trap_dict[key] = 100 * (trap_dict[key] / total_frequency)
 
 func init_level():
-	for i in range(15):
+	for i in range(-5, 15):
 		var tile = stone_tile.instance()
 		tile.position.x = i * 80
 		tile.position.y = y_pos
 		add_child(tile)
 	current_slice = 15
 
-func add_bonus(item):
+func add_bonus(item, dist = 2):
 	var bonus = item.instance()
-	bonus.position.x = (current_slice - 2 - randi() % 4) * 80
+	bonus.position.x = (current_slice - dist - randi() % 4) * 80
 	bonus.position.y = y_pos - 120
 	add_child(bonus)
 
@@ -72,7 +72,7 @@ func get_next_tile():
 			WizLord.set_trap_counts(trap_count_dict)
 			return magic_missile_tile.instance()
 		elif tile < trap_dict["Spike"] + trap_dict["Lava"] + trap_dict["Magic Missile"] + trap_dict["Monster"]:
-			add_bonus(scroll)
+			add_bonus(scroll, 6)
 			trap_count_dict["Monster"] += 1
 			WizLord.set_trap_counts(trap_count_dict)
 			return monster_tile.instance()
@@ -82,7 +82,7 @@ func get_next_tile():
 			WizLord.set_trap_counts(trap_count_dict)
 			return wind_tile.instance()
 		elif tile < trap_dict["Spike"] + trap_dict["Lava"] + trap_dict["Magic Missile"] + trap_dict["Monster"] + trap_dict["Wind"] + trap_dict["Crate"]:
-			add_bonus(scroll)
+			add_bonus(scroll, 6)
 			trap_count_dict["Crate"] += 1
 			WizLord.set_trap_counts(trap_count_dict)
 			return crate_tile.instance()

@@ -46,7 +46,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 
 [sub_resource type="CircleShape2D" id=7]
-radius = 73.0069
+radius = 58.0345
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 5 )
