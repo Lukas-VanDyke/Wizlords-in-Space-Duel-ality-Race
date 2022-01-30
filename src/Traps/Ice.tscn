@@ -4,22 +4,18 @@
 [ext_resource path="res://Art/Blocks-two-point-oh.png" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 240, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 80, 240, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=6]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 160, 240, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=7]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 240, 240, 80, 80 )
 
@@ -35,7 +31,7 @@ animations = [ {
 extents = Vector2( 40, 40 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 39.5, 10 )
+extents = Vector2( 39.5, 2 )
 
 [node name="Ice" type="Node2D"]
 script = ExtResource( 1 )
@@ -54,7 +50,7 @@ shape = SubResource( 2 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 40.5, -92 )
+position = Vector2( 40.5, -84 )
 shape = SubResource( 3 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

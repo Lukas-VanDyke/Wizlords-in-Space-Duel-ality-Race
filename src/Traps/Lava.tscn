@@ -4,22 +4,18 @@
 [ext_resource path="res://Traps/Lava.gd" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 160, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 80, 160, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=6]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 160, 160, 80, 80 )
 
 [sub_resource type="AtlasTexture" id=7]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 240, 160, 80, 80 )
 
@@ -35,7 +31,7 @@ animations = [ {
 extents = Vector2( 40, 40 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 39, 7.5 )
+extents = Vector2( 39, 1.5 )
 
 [node name="Lava" type="Node2D"]
 script = ExtResource( 2 )
@@ -53,7 +49,7 @@ shape = SubResource( 2 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 40, -88.5 )
+position = Vector2( 40, -82.5 )
 shape = SubResource( 3 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

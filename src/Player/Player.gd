@@ -23,8 +23,12 @@ var begun = false
 var iced = false
 var slowed = false
 var warded = false
+var flaming = false
 
 signal hit_trap(trap)
+signal collect_ward
+signal collect_jump
+signal collect_blam
 
 func _ready():
 	connect("hit_trap", self, "_hit_trap")
@@ -77,10 +81,20 @@ func start_ice():
 func ice_end():
 	iced = false
 	$IceTimer.stop()
-	
 	if currentPositionState != PositionState.Dead:
 		$PlayerSprite/AnimationPlayer.play("run")
+
+func start_fire():
+	flaming = true
+	$FireTimer.start()
+	$PlayerSprite/AnimationPlayer.play("fire")
 	
+func fire_end():
+	flaming = false
+	$PlayerSprite/AnimationPlayer.play("run")
+	if currentPositionState != PositionState.Dead:
+		$PlayerSprite/AnimationPlayer.play("run")
+
 func start_ward():
 	warded = true
 	$FullWard.show()
@@ -117,6 +131,8 @@ func move(delta):
 	velocity.x = currentSpeed
 	if slowed:
 		velocity.x = currentSpeed / 2
+	elif flaming:
+		velocity .x = currentSpeed * 2
 	
 	if collision_info:
 		set_position_state(collision_info)
@@ -141,7 +157,9 @@ func can_jump():
 	
 #Play animation based on the current state
 func play_state_animation():
-	if (currentPositionState == PositionState.Air and velocity.y < 0):
+	if flaming:
+		$PlayerSprite/AnimationPlayer.play("fire")
+	elif (currentPositionState == PositionState.Air and velocity.y < 0):
 		$PlayerSprite/AnimationPlayer.play("jump")
 	elif (currentPositionState == PositionState.Air and velocity.y >= 0):
 		$PlayerSprite/AnimationPlayer.play("fall")
@@ -161,7 +179,9 @@ func _hit_trap(var trap):
 		slowed = true
 	elif (trap == "wind_end"):
 		slowed = false
-	elif (trap == "lava" or trap == "spikes" or trap == "magic_missile" or trap == "monster" or trap == "explosion"):
+	elif (trap == "lava"):
+		start_fire()
+	elif (trap == "spikes" or trap == "magic_missile" or trap == "monster" or trap == "explosion"):
 		check_end()
 		
 func play_hit_sound(trap):
