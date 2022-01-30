@@ -28,7 +28,7 @@ func begin():
 	trap_frequency = trap_dict["Traps"]
 	for key in trap_dict:
 		if key == "Traps": continue
-		total_frequency += trap_dict[key]
+		total_frequency += float(trap_dict[key])
 		trap_count_dict[key] = 0
 	if total_frequency == 0:
 		total_frequency = 1
