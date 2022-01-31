@@ -21,6 +21,12 @@ func _ready():
 	$PlayerUI/DoubleJump/CenterContainer/VBoxContainer/Label.text = "Air Jump\n%s" % jumps
 	$PlayerUI/Ward/CenterContainer/VBoxContainer/Label.text = "Ward\n%s" % wards
 	$PlayerUI/BlamBlam/CenterContainer/VBoxContainer/Label.text = "Blam Blam\n%s" % blams
+	
+	var vp_size = get_tree().root.get_viewport().size
+	var vp_scale = vp_size / Vector2(1024, 600)
+	$BG1.scale.y = vp_scale.y
+	$BG2.scale.y = vp_scale.y
+	$BG1.material.set_shader_param("scale", vp_scale)
 
 func begin():
 	if WizLord.show_gameplay_tutorial:
