@@ -93,8 +93,8 @@ func transition(screenshot):
 	var tex = ImageTexture.new()
 	tex.create_from_image(screenshot)
 	old_scene.texture = tex
-	
-	tween.interpolate_property(old_scene, "rect_position:x", old_scene.rect_position.x, -1200, 1, Tween.TRANS_LINEAR,Tween.EASE_OUT)
+	var size = get_viewport().size
+	tween.interpolate_property(old_scene, "rect_position:x", old_scene.rect_position.x, -size.x, 1, Tween.TRANS_LINEAR,Tween.EASE_OUT)
 	tween.start()
 	# Might want to delay the actual start until this is done
 	tween.connect("tween_all_completed", current_scene, "begin")
