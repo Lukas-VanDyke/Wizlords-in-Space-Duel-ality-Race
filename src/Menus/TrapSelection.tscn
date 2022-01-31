@@ -116,6 +116,8 @@ valign = 1
 
 [node name="Slide02" type="Label" parent="Tutorial"]
 visible = false
+anchor_left = 0.03
+anchor_top = 0.1
 anchor_right = 0.3
 anchor_bottom = 1.0
 theme = ExtResource( 4 )
@@ -136,6 +138,7 @@ __meta__ = {
 [node name="Slide03" type="Label" parent="Tutorial"]
 visible = false
 anchor_left = 0.6
+anchor_top = 0.1
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 4 )

@@ -6,6 +6,8 @@ var jumps = 0
 var wards = 0
 var blams = 0
 
+var vp_size = Vector2(1024, 600)
+
 func _ready():
 	$PlayerUI/DoubleJump.disabled = true
 	$PlayerUI/Ward.disabled = true
@@ -21,11 +23,13 @@ func _ready():
 	$PlayerUI/DoubleJump/CenterContainer/VBoxContainer/Label.text = "Air Jump\n%s" % jumps
 	$PlayerUI/Ward/CenterContainer/VBoxContainer/Label.text = "Ward\n%s" % wards
 	$PlayerUI/BlamBlam/CenterContainer/VBoxContainer/Label.text = "Blam Blam\n%s" % blams
-	
-	var vp_size = get_tree().root.get_viewport().size
+
+	vp_size = get_tree().root.get_viewport().size
 	var vp_scale = vp_size / Vector2(1024, 600)
 	$BG1.scale.y = vp_scale.y
+	$BG1.position.y = vp_size.y / 2
 	$BG2.scale.y = vp_scale.y
+	$BG2.position.y = vp_size.y / 2
 	$BG1.material.set_shader_param("scale", vp_scale)
 
 func begin():
@@ -46,9 +50,9 @@ func _process(delta):
 	var player_pos = $Player.position.x / 80
 	if $LevelGenerator.current_slice < player_pos + 15:
 		$LevelGenerator.add_tile()
-	if $Player.position.x > $BG1.position.x + 2000:
+	if $Player.position.x > $BG1.position.x + 1250 + vp_size.x * 0.6:
 		$BG1.position.x += 5000 
-	if $Player.position.x > $BG2.position.x + 2000:
+	if $Player.position.x > $BG2.position.x + 1250 + vp_size.x * 0.6:
 		$BG2.position.x += 5000
 		
 func add_jump():

@@ -18,10 +18,6 @@ config/icon="res://duel-ality_race_icon.png"
 
 WizLord="*res://Managers/WizLord.gd"
 
-[display]
-
-window/size/fullscreen=true
-
 [global]
 
 touch=false
