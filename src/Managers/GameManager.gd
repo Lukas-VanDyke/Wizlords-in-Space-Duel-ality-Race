@@ -23,6 +23,12 @@ func _ready():
 	$PlayerUI/BlamBlam/CenterContainer/Label.text = "%s" % blams
 
 func begin():
+	if WizLord.show_gameplay_tutorial:
+		$PlayerUI/Tutorial.visible = true
+	else:
+		actual_begin()
+	
+func actual_begin():
 	$LevelGenerator.begin()
 	$Player.begin()
 	begun = true
@@ -77,3 +83,7 @@ func use_blam():
 func try_double_jump():
 	if jumps > 0:
 		$Player.double_jump()
+
+
+func _on_Tutorial_tutorial_done():
+	actual_begin()

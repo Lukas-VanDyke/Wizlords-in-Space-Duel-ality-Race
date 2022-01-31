@@ -14,6 +14,9 @@ var trap_values = {
 
 func _ready():
 	$ScoreText.text = str(get_score()) + " " + currency
+	
+func begin():
+	pass
 
 func get_score():
 	var trap_counts = WizLord.get_trap_counts()
