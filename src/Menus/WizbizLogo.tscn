@@ -1,27 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Menus/WizbizLogo.gd" type="Script" id=1]
-[ext_resource path="res://Art/Background.png" type="Texture" id=2]
+[ext_resource path="res://Menus/Background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Art/wizbizlogo.png" type="Texture" id=3]
 [ext_resource path="res://Audio/Wizlaugh.ogg" type="AudioStream" id=4]
-
-[sub_resource type="Shader" id=3]
-code = "shader_type canvas_item;
-
-uniform float offset = 0.0;
-uniform bool play = false;
-
-void fragment() {
-	COLOR = texture(TEXTURE, UV - vec2(fract(TIME * 0.1), 0.0));
-	if (play) {
-		COLOR = texture(TEXTURE, UV + vec2(fract(TIME * 0.1), 0.0));
-	}
-}"
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
-shader_param/offset = 0.0
-shader_param/play = false
 
 [node name="WizbizLogo" type="Control"]
 anchor_right = 1.0
@@ -31,11 +13,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="Sprite" parent="."]
-material = SubResource( 4 )
-position = Vector2( 1192, 328 )
-rotation = 1.5708
-texture = ExtResource( 2 )
+[node name="Background" parent="." instance=ExtResource( 2 )]
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0

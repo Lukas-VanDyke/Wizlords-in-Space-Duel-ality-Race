@@ -1,28 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Menus/MainMenu.gd" type="Script" id=1]
-[ext_resource path="res://Art/Background.png" type="Texture" id=2]
+[ext_resource path="res://Menus/Background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Art/Title.png" type="Texture" id=3]
 [ext_resource path="res://Art/Title-bland.png" type="Texture" id=4]
 [ext_resource path="res://Menus/TypeStart.tscn" type="PackedScene" id=5]
-
-[sub_resource type="Shader" id=5]
-code = "shader_type canvas_item;
-
-uniform float offset = 0.0;
-uniform bool play = false;
-
-void fragment() {
-	COLOR = texture(TEXTURE, UV - vec2(fract(TIME * 0.1), 0.0));
-	if (play) {
-		COLOR = texture(TEXTURE, UV + vec2(fract(TIME * 0.1), 0.0));
-	}
-}"
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 5 )
-shader_param/offset = 0.0
-shader_param/play = false
 
 [sub_resource type="Animation" id=1]
 resource_name = "Intro"
@@ -96,11 +78,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="Sprite" parent="."]
-material = SubResource( 4 )
-position = Vector2( 1192, 328 )
-rotation = 1.5708
-texture = ExtResource( 2 )
+[node name="Background" parent="." instance=ExtResource( 2 )]
 
 [node name="TitleBland" type="Node2D" parent="."]
 position = Vector2( 468, 201 )

@@ -21,6 +21,8 @@ WizLord="*res://Managers/WizLord.gd"
 [global]
 
 touch=false
+window=false
+size=false
 
 [input]
 
