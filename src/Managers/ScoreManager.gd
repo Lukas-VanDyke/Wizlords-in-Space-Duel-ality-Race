@@ -22,11 +22,12 @@ func get_score():
 	var trap_counts = WizLord.get_trap_counts()
 	var trap_freqs = WizLord.get_traps()
 	var score = 0
+	
 	for key in trap_counts:
 		if key == "Traps": continue
 		score += trap_values[key] * trap_counts[key]
 	# There is a 20% bonus for overall trap frequency 
-	return score * (1+trap_freqs["Traps"] / 500)
+	return stepify(score * (1+trap_freqs["Traps"] / 500), 0.01)
 
 func _continue_pressed():
 	WizLord.play_one_shot("continue")
