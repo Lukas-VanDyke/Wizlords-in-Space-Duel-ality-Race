@@ -20,6 +20,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+skip_type = false
 
 [node name="Button" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0 )

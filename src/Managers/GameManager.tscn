@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Managers/GameManager.gd" type="Script" id=1]
 [ext_resource path="res://Managers/LevelGenerator.tscn" type="PackedScene" id=2]
@@ -12,6 +12,19 @@
 [ext_resource path="res://Art/Theme.tres" type="Theme" id=10]
 [ext_resource path="res://Art/fade.png" type="Texture" id=11]
 [ext_resource path="res://Menus/SelectionTutorial.gd" type="Script" id=12]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 14, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 16, 18 )
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource( 1 )
@@ -52,19 +65,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="PlayerUI/DoubleJump/CenterContainer"]
-margin_left = 49.0
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/DoubleJump/CenterContainer"]
+margin_left = 33.0
+margin_top = 25.0
+margin_right = 119.0
+margin_bottom = 124.0
+
+[node name="CenterContainer" type="CenterContainer" parent="PlayerUI/DoubleJump/CenterContainer/VBoxContainer"]
+margin_right = 86.0
+margin_bottom = 64.0
+
+[node name="Sprite" type="TextureRect" parent="PlayerUI/DoubleJump/CenterContainer/VBoxContainer/CenterContainer"]
+margin_left = 11.0
+margin_right = 75.0
+margin_bottom = 64.0
+texture = SubResource( 1 )
+
+[node name="Label" type="Label" parent="PlayerUI/DoubleJump/CenterContainer/VBoxContainer"]
 margin_top = 68.0
-margin_right = 103.0
-margin_bottom = 82.0
+margin_right = 86.0
+margin_bottom = 99.0
+theme = ExtResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Air Jump"
-
-[node name="Sprite" type="Sprite" parent="PlayerUI/DoubleJump/CenterContainer"]
-position = Vector2( 74, 43 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 8 )
-hframes = 8
+align = 1
 
 [node name="Ward" type="TextureButton" parent="PlayerUI"]
 anchor_top = 0.25
@@ -86,18 +110,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="PlayerUI/Ward/CenterContainer"]
-margin_left = 60.0
-margin_top = 68.0
-margin_right = 93.0
-margin_bottom = 82.0
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/Ward/CenterContainer"]
+margin_left = 51.0
+margin_top = 41.0
+margin_right = 101.0
+margin_bottom = 108.0
+
+[node name="CenterContainer" type="CenterContainer" parent="PlayerUI/Ward/CenterContainer/VBoxContainer"]
+margin_right = 50.0
+margin_bottom = 32.0
+
+[node name="Sprite" type="TextureRect" parent="PlayerUI/Ward/CenterContainer/VBoxContainer/CenterContainer"]
+margin_left = 11.0
+margin_right = 39.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 28, 32 )
+texture = SubResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="PlayerUI/Ward/CenterContainer/VBoxContainer"]
+margin_top = 36.0
+margin_right = 50.0
+margin_bottom = 67.0
+theme = ExtResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Ward"
-
-[node name="Sprite" type="Sprite" parent="PlayerUI/Ward/CenterContainer"]
-position = Vector2( 75, 44 )
-texture = ExtResource( 7 )
-hframes = 4
+align = 1
 
 [node name="BlamBlam" type="TextureButton" parent="PlayerUI"]
 anchor_top = 0.5
@@ -119,18 +157,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="PlayerUI/BlamBlam/CenterContainer"]
-margin_left = 41.0
-margin_top = 68.0
-margin_right = 111.0
-margin_bottom = 82.0
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/BlamBlam/CenterContainer"]
+margin_left = 25.0
+margin_top = 39.0
+margin_right = 128.0
+margin_bottom = 110.0
+
+[node name="CenterContainer" type="CenterContainer" parent="PlayerUI/BlamBlam/CenterContainer/VBoxContainer"]
+margin_right = 103.0
+margin_bottom = 36.0
+
+[node name="Sprite" type="TextureRect" parent="PlayerUI/BlamBlam/CenterContainer/VBoxContainer/CenterContainer"]
+margin_left = 35.0
+margin_right = 67.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 32, 36 )
+texture = SubResource( 3 )
+expand = true
+
+[node name="Label" type="Label" parent="PlayerUI/BlamBlam/CenterContainer/VBoxContainer"]
+margin_top = 40.0
+margin_right = 103.0
+margin_bottom = 71.0
+theme = ExtResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Blam Blam"
-
-[node name="Sprite" type="Sprite" parent="PlayerUI/BlamBlam/CenterContainer"]
-position = Vector2( 75, 48 )
-texture = ExtResource( 9 )
-hframes = 6
+align = 1
 
 [node name="JumpButton" type="TextureButton" parent="PlayerUI"]
 anchor_left = 0.15
@@ -156,31 +208,37 @@ __meta__ = {
 }
 
 [node name="Slide01" type="Label" parent="PlayerUI/Tutorial"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 10 )
 text = "Welcome to the Gauntlet.
 
-This is where the Wizord meets the road."
+This is where the Wizlord meets the road."
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Slide02" type="Label" parent="PlayerUI/Tutorial"]
 visible = false
 anchor_right = 0.3
 anchor_bottom = 1.0
 theme = ExtResource( 10 )
-text = "These are your bonuses.
+text = "These are your spells.
 
 They're the only thing
 standing between you
 and certain death.
 
-Each bonus has a different
+Each spell has a different
 effect and it's up to
 you to discover what
-they are!"
+they are!
+
+(Try using <Z>, <X>,
+and <Space> to
+cast)"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

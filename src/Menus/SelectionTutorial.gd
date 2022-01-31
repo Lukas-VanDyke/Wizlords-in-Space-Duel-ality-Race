@@ -13,3 +13,7 @@ func _on_Tutorial_pressed():
 		state += 1
 		children[state].visible = true
 
+func _input(ev):
+	if ev is InputEventKey and ev.pressed and self.visible:
+		_on_Tutorial_pressed()
+		accept_event()

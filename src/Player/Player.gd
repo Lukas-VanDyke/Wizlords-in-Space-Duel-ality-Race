@@ -103,6 +103,8 @@ func fire_end():
 		$PlayerSprite/AnimationPlayer.play("run")
 
 func start_ward():
+	if currentPositionState == PositionState.Dead: return
+	
 	warded = true
 	$FullWard.show()
 	$TransparentWard.show()
@@ -116,6 +118,8 @@ func ward_end():
 	$WardTimer.stop()
 	
 func send_blam():
+	if currentPositionState == PositionState.Dead: return
+	
 	var newBlam = null
 	var newX = 40
 	
