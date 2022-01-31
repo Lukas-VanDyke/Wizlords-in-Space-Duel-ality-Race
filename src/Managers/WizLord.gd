@@ -3,6 +3,7 @@ extends Node
 onready var music_scene = load("res://Managers/MusicManager.tscn")
 var music_manager = null
 var show_selection_tutorial = true
+var show_gameplay_tutorial = true
 
 var current_scene = null
 var current_traps = {"Traps": 20, "Wind": 1, "Spike": 1, "Lava": 1, "Ice":100, "Magic Missile":1, "Monster":1, "Crate":1}

@@ -45,66 +45,68 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Spike" parent="Traps" instance=ExtResource( 2 )]
-margin_left = 10.0
-margin_top = 10.0
+margin_left = 39.0
+margin_top = 30.0
+margin_right = 29.0
 item = "Spike"
 
 [node name="Ice" parent="Traps" instance=ExtResource( 2 )]
 anchor_top = 1.0
-margin_left = 10.0
-margin_top = -145.0
-margin_right = 10.0
+margin_left = 39.0
+margin_top = -175.0
+margin_right = 39.0
 margin_bottom = 420.0
 item = "Ice"
 
 [node name="Lava" parent="Traps" instance=ExtResource( 2 )]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 10.0
+margin_left = 39.0
 margin_top = -65.0
-margin_right = 10.0
+margin_right = 39.0
 
 [node name="Magic Missile" parent="Traps" instance=ExtResource( 2 )]
-margin_left = 140.0
-margin_top = 10.0
+margin_left = 169.0
+margin_top = 30.0
+margin_right = 29.0
 item = "Magic Missile"
 
 [node name="Monster" parent="Traps" instance=ExtResource( 2 )]
 anchor_top = 1.0
-margin_left = 140.0
-margin_top = -145.0
-margin_right = 10.0
+margin_left = 169.0
+margin_top = -175.0
+margin_right = 39.0
 margin_bottom = 420.0
 item = "Monster"
 
 [node name="Wind" parent="Traps" instance=ExtResource( 2 )]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 140.0
+margin_left = 169.0
 margin_top = -65.0
-margin_right = 10.0
+margin_right = 39.0
 item = "Wind"
 
 [node name="Crate" parent="Traps" instance=ExtResource( 2 )]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 260.0
+margin_left = 289.0
 margin_top = -65.0
-margin_right = 10.0
+margin_right = 39.0
 margin_bottom = 340.0
 item = "Crate"
 
 [node name="All" parent="Traps" instance=ExtResource( 2 )]
 anchor_left = 1.0
 anchor_bottom = 0.0
-margin_left = -300.0
-margin_top = 10.0
+margin_left = -330.0
+margin_top = 30.0
 item = "Traps"
 freq = 18
 
 [node name="TypeStart" parent="." instance=ExtResource( 3 )]
 modulate = Color( 1, 1, 1, 1 )
-anchor_left = 0.7
+anchor_left = 0.65
 anchor_top = 0.4
 anchor_right = 1.0
 anchor_bottom = 0.6
